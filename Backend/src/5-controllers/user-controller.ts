@@ -15,7 +15,6 @@ class UserController {
         this.router.get("/users", this.getAllUsers);
     }
 
-
     private async register(request: Request, response: Response) {
         const user = new UserModel(request.body);
         const token = await userService.register(user);
