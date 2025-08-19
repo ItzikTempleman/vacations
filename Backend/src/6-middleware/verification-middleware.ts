@@ -6,7 +6,7 @@ import { Role } from "../3-models/role";
 import StatusCode from "../3-models/status-code";
 import { AuthorizationError } from "../3-models/error-models";
 
-class VerifyUser {
+class VerificationMiddleware {
     public readonly verifyIsUser = (request: Request, response: Response, next: NextFunction) => {
         try {
             const authHeader = (request.headers as any)["authorization"] as string | undefined;
@@ -53,9 +53,27 @@ class VerifyUser {
             return response.status(StatusCode.Unauthorized).send("Unauthorized");
         }
     }
+
+      public readonly verifyLoggedIn = (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const authHeader = (request.headers as any)["authorization"] as string | undefined;
+      const userJWT = authHeader?.split(" ")[1];
+      if (!userJWT) throw new AuthorizationError("Missing valid user");
+
+      const payload = jwt.verify(userJWT, appConfig.jwtSecretKey) as { user: UserModel };
+
+    
+      (request as any).user = payload.user;
+
+      next();
+    } catch {
+      return response.status(StatusCode.Unauthorized).send("Unauthorized");
+    }
+  }
+
 }
 
-export const verifyUser = new VerifyUser();
+export const verificationMiddleware = new VerificationMiddleware();
 
 
 

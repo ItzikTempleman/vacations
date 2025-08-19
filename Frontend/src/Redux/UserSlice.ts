@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserModel } from "../Models/user-model/UserModel";
 
-const initialUsers: UserModel = undefined;
-
-
-//register or login single user
-function initUser(_: UserModel, action: PayloadAction<UserModel>) {
+function registerOrLogin(_: UserModel, action: PayloadAction<UserModel>) {
     return action.payload;
 };
 
@@ -16,9 +12,9 @@ function logoutUser(_: UserModel, __: PayloadAction<UserModel>): null {
 export const userSlice = createSlice(
     {
         name: "users",
-        initialState: initialUsers,
+        initialState: new UserModel(),
         reducers: {
-        registrationAndLogin:initUser,
+        registrationAndLogin:registerOrLogin,
         logout:logoutUser
         }
     }

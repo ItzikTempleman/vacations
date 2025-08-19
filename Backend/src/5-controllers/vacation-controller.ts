@@ -2,23 +2,26 @@ import express, { NextFunction, Request, Response } from "express";
 import { vacationService } from "../4-services/vacation-service";
 import { fileSaver } from "uploaded-file-saver";
 import { VacationModel } from "../3-models/vacation-model";
-import { verifyUser } from "../6-middleware/verification-middleware";
+import { verificationMiddleware } from "../6-middleware/verification-middleware";
 import StatusCode from "../3-models/status-code";
+import { ResourceNotFoundError } from "../3-models/error-models";
 class VacationController {
 
     public readonly router = express.Router();
 
     public constructor() {
-        this.router.get("/vacations", this.getAllVacations);
-        this.router.get("/vacations/:id", this.getOneVacation);
+        this.router.get("/vacations", verificationMiddleware.verifyLoggedIn, this.getAllVacations);
+        this.router.get("/vacations/:id", verificationMiddleware.verifyLoggedIn, this.getOneVacation);
 
-        this.router.post("/vacations", verifyUser.verifyIsAdmin, this.addVacation);
-        this.router.put("/vacations/:id", verifyUser.verifyIsAdmin, this.updateVacation);
-        this.router.delete("/vacations/:id", verifyUser.verifyIsAdmin, this.deleteVacation);
-        this.router.get("/vacations/images/:imageName", this.getImage);
+        this.router.post("/vacations", verificationMiddleware.verifyIsAdmin,this.addVacation);
+        this.router.put("/vacations/:id",verificationMiddleware.verifyIsAdmin, this.updateVacation);
+        this.router.delete("/vacations/:id", verificationMiddleware.verifyIsAdmin, this.deleteVacation);
+        this.router.get("/vacations/images/:imageName", verificationMiddleware.verifyLoggedIn, this.getImage);
 
-        this.router.post("/vacations/liked/:vacationId", verifyUser.verifyIsUser, this.likeVacation.bind(this));
-        this.router.delete("/vacations/liked/:vacationId", verifyUser.verifyIsUser, this.unlikeVacation.bind(this));
+        this.router.post("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.likeVacation.bind(this));
+        this.router.delete("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.unlikeVacation.bind(this));
+        this.router.get("/vacations/liked/:vacationId", verificationMiddleware.verifyLoggedIn, this.getVacationTotalLikedCount.bind(this));
+
     };
 
     public async getOneVacation(request: Request, response: Response) {
@@ -75,6 +78,17 @@ class VacationController {
         const success = await vacationService.unlikeVacation(userId, vacationId);
         return response.json(success ? "unliked" : "not liked");
     }
+
+
+    public async getVacationTotalLikedCount(request: Request, response: Response) {
+        const vacationId = +request.params.vacationId;
+        try {
+            const likedCount = await vacationService.getVacationTotalLikedCount(vacationId)
+            return response.json(likedCount);
+        } catch (err: any) {
+            throw new ResourceNotFoundError(vacationId)
+        }
+    };
 
     private async getImage(request: Request, response: Response) {
         const imageName = request.params.imageName;

@@ -14,12 +14,12 @@ class VacationService {
         return vacations;
     };
 
-        public async getOneVacation(id: number): Promise<VacationModel> {
-        const sql = `select * , concat(?,imageName) as imageUrl from vacationstable where id = ?`; 
-        const values = [appConfig.baseImageUrl,id];
+    public async getOneVacation(id: number): Promise<VacationModel> {
+        const sql = `select * , concat(?,imageName) as imageUrl from vacationstable where id = ?`;
+        const values = [appConfig.baseImageUrl, id];
         const vacations = await dal.execute(sql, values) as VacationModel[];
         const vacation = vacations[0];
-        if (!vacations) throw new ResourceNotFoundError(id);
+        if (!vacation) throw new ResourceNotFoundError(id);
         return vacation;
     }
 
@@ -45,13 +45,13 @@ class VacationService {
         vacation.validate();
         const oldImageName = await this.getImageName(vacation.id);
         const newImageName = vacation.image ? await fileSaver.update(oldImageName!, vacation.image) : oldImageName;
-        const sql="update vacationstable set destination=?, departureDate=?,returnDate=?,description=?, price=?, imageName=? where id=?";
-        const values=[vacation.destination, vacation.departureDate,vacation.returnDate,vacation.destination, vacation.price,newImageName, vacation.id];
-        const info:OkPacketParams= await dal.execute(sql, values) as OkPacketParams;
-        if(info.affectedRows===0) throw new ResourceNotFoundError(vacation.id);
-        const dbVacation= await this.getOneVacation(vacation.id);
+        const sql = "update vacationstable set destination=?, departureDate=?,returnDate=?,description=?, price=?, imageName=? where id=?";
+        const values = [vacation.destination, vacation.departureDate, vacation.returnDate, vacation.description, vacation.price, newImageName, vacation.id];
+        const info: OkPacketParams = await dal.execute(sql, values) as OkPacketParams;
+        if (info.affectedRows === 0) throw new ResourceNotFoundError(vacation.id);
+        const dbVacation = await this.getOneVacation(vacation.id);
         return dbVacation;
-    }  
+    }
 
     public async deleteVacation(id: number): Promise<void> {
         const sql = "delete from vacationstable where id=?";
@@ -96,7 +96,14 @@ class VacationService {
         return result.affectedRows === 1;
     }
 
-
+    public async getVacationTotalLikedCount(vacationId: number): Promise<number> {
+      const sql="select count(*) as likescount from likes where vacationId=?";
+      const values =[vacationId];
+      const totalLikes= await dal.execute(sql,values) as {
+        likescount:number
+      }[];
+      return totalLikes.length > 0 ? totalLikes[0].likescount : 0;
+    };
 };
 
 export const vacationService = new VacationService();
