@@ -9,6 +9,16 @@
     background: linear-gradient(to right, rgb(212, 240, 251), rgb(212, 240, 251));
 }
 
+.title{
+    display: flex;
+   justify-content: flex-start;
+   width: 100%;
+}
+.registration-container{
+display: flex;
+   justify-content: flex-end;
+   width: 100%;
+}
 
 .header-link {
     text-decoration: none;

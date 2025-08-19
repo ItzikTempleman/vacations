@@ -24,19 +24,23 @@ export function LoginScreen() {
     return (
         <div className="LoginScreen">
 
-            <h2>Log in</h2>
+            <h2 className="header-login-register-title">Log in</h2>
 
             <form onSubmit={handleSubmit(send)}>
                 <div className="login-form-container">
                     <TextField
+                     type="email"
                         label="Enter email "
                         placeholder="Email"
                         {...register("email")}
                     />
                     <TextField
+                    type="password" 
+
+                    autoComplete="new-password"
                         label="Enter password"
                         placeholder="Password"
-                        {...register("password")}
+                      {...register("password", { required: true, minLength: 8 })}
                     />
                     <Button
                         type="submit"
