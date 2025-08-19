@@ -5,8 +5,8 @@ export function Menu() {
 
     return (
         <div className="Menu">
-              <NavLink to="/home" className="nav-link">Home</NavLink>
-
+            <NavLink to="/home" className="nav-link">Home</NavLink>
+    
         </div>
     );
 }

@@ -1,0 +1,21 @@
+.form-container {
+    border-radius: 10px;
+    padding: 20px;
+
+    width: 280px;
+    margin: 0 auto;
+    height: 500px;
+    background-color: rgb(212, 240, 251);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container button {
+  align-self: center;
+}
+
+.MuiTextField-root .MuiInputBase-root {
+  background-color: white;
+  border-radius: 6px; 
+}

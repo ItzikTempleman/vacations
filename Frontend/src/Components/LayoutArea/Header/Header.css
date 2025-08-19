@@ -5,6 +5,26 @@
     justify-content: flex-start;
     padding-left: 30px;
     padding-right: 20px;
-    color: white;
-    background: linear-gradient(to right, #4b79a1, #283e51);
+    
+    background: linear-gradient(to right, rgb(212, 240, 251), rgb(212, 240, 251));
+}
+
+
+.header-link {
+    text-decoration: none;
+    color: #4b79a1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-left: 4px solid transparent;
+}
+
+.header-link.active {
+    color: #4b79a1;
+     font-size: 18px;
+    font-weight: bold;
+    border-left: 2px solid transparent;
+    background-color: transparent;
 }
