@@ -3,6 +3,7 @@ import { AppState } from "../../../Redux/Store";
 import { useEffect } from "react";
 import { vacationService } from "../../../Services/VacationService";
 import { VacationCard } from "../VacationCard/VacationCard";
+import "./Home.css";
 
 export function Home() {
 
@@ -18,12 +19,11 @@ export function Home() {
 
     return (
         <div className="Home">
-{
-    vacations.map(
-          v => <VacationCard key={v.id} vacation={v} />
+            {
+                vacations.map(
+                    v => <VacationCard key={v.id} vacation={v} />
+                )
+            }
+        </div>
     )
 }
-        </div>
-    );
-}
-

@@ -1,9 +1,12 @@
 .Home {
-flex-direction: row;
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px;
+  width: 100%;        
 }
-.home-profile {
-  position: fixed;
-  top: 90px;
-  right: 10px;
+
+img {
+  width: 100%;
+  height: auto;
 }

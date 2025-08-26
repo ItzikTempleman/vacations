@@ -1,11 +1,12 @@
 .VacationCard {
-  width: 100%;
-  max-width: 350px;
-  height: auto;
+  width: 300px;
  box-shadow: 0 2px 6px rgba(17, 35, 30, 20);
   margin: 10px;
   border-radius: 12px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
 
 .image-container {
@@ -20,6 +21,22 @@
   background-color: rgba(0, 0, 0, 0.4);  
   padding: 6px 10px;
   border-radius: 6px;
+}
+
+.vacation-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.vacation-description {
+  flex-grow: 1;
+  padding: 12px;
+}
+.vacation-price {
+  margin-top: auto; 
+  text-align: right;
+  font-weight: bold;
+  padding: 6px;
 }
 
 .vacation-dates {
@@ -39,7 +56,6 @@ border-radius: 2px;
 .image-container img {
   display: block;
   width: 100%;
-  max-width: 350px;
   height: auto;
 }
 
@@ -51,10 +67,6 @@ border-radius: 2px;
   color: white;
   font-size: 26px;
   text-shadow: 0 2px 4px rgba(0, 0, 12, 12);
-}
-.vacation-content {
-  
-
 }
 
 .like-icon {

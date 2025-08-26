@@ -26,7 +26,9 @@ export function Header() {
 
   return (
     <div className="Header">
-
+<div className="center-container">
+  <h2>Welcome to Dream Vacations</h2>
+</div>
       <nav className="registration-container">
         {!user && (
           <>

@@ -7,7 +7,7 @@ export function Menu() {
         <div className="Menu">
             <NavLink to="/home" className="nav-link">
                 <HomeIcon />
-                <a>Home</a>
+                <span className="home-text">Home</span>
             </NavLink>
         </div>
     );
