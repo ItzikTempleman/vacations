@@ -22,7 +22,7 @@ class UserService {
     public async registerUser(user: UserModel): Promise<void> {
         const response = await axios.post<string>(appConfig.registerUrl, user);
         const token: string = response.data;
-        const decoded = jwtDecode<DecodedToken>(token)
+        const decoded = jwtDecode<DecodedToken>(token);
         const dbUser = decoded.user;
         store.dispatch(userSlice.actions.registrationAndLogin(dbUser))
         localStorage.setItem("token", token);

@@ -3,7 +3,7 @@
     box-sizing: border-box;
     display: grid;
     grid-template-rows: 6% 88% 6%;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 10% 90%;
 }
 
 .MainLayout>*{
@@ -14,9 +14,9 @@ header, footer {
     grid-column: span 2;
 }
 
-aside, main, footer{
+/* aside, main, footer{
     border: solid 0.3px;
-}
+} */
 
 main {
     overflow: auto;

@@ -27,39 +27,38 @@ export function Header() {
   return (
     <div className="Header">
 
-        <nav className="registration-container">
+      <nav className="registration-container">
+        {!user && (
+          <>
+            <NavLink to="/register">
+              <PersonAddIcon className="mui-icon" />
+              <span className="label">Register</span>
+            </NavLink>
 
-          <NavLink to="/register">
-            <PersonAddIcon className="mui-icon" />
-            <span className="label">Register</span>
-          </NavLink>
+            <span className="sep">|</span>
 
-          <span className="sep">|</span>
-
-          <NavLink to="/login">
-            <LoginIcon className="mui-icon" />
-            <span className="label">Login</span>
-          </NavLink>
-
-          {user && accountProtection.isUser() && (
-            <>
-              <span className="sep">|</span>
-
-              <NavLink to="/profile">
-                <AccountCircleIcon className="mui-icon" />
-                <span className="label">Profile</span>
-              </NavLink>
-
-              <span className="sep">|</span>
-
-              <Button onClick={logout} >
-                <LogoutIcon className="mui-icon" />
-                <span className="label">Logout</span>
-              </Button>
-
-            </>
-          )}
-        </nav>
-      </div>
+            <NavLink to="/login">
+              <LoginIcon className="mui-icon" />
+              <span className="label">Login</span>
+            </NavLink>
+             <span className="sep">|</span>
+          </>
+          )
+        }
+        {user && accountProtection.isUser() && (
+          <>
+            <NavLink to="/profile">
+              <AccountCircleIcon className="mui-icon"/>
+              <span className="label">Profile</span>
+            </NavLink>
+            <span className="sep">|</span>
+            <Button onClick={logout} >
+              <LogoutIcon className="mui-icon" />
+              <span className="label">Logout</span>
+            </Button>
+          </>
+        )}
+      </nav>
+    </div>
   );
 }

@@ -5,14 +5,10 @@ export function Menu() {
 
     return (
         <div className="Menu">
-
-            <div className="home-label">
-                <NavLink to="/home">
-                    <HomeIcon className="nav-link" />
-                    <span>Home</span>
-                </NavLink>
-            </div>
-
+            <NavLink to="/home" className="nav-link">
+                <HomeIcon />
+                <a>Home</a>
+            </NavLink>
         </div>
     );
 }

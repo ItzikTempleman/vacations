@@ -1,5 +1,6 @@
 .Home {
-
+flex-direction: row;
+  display: flex;
 }
 .home-profile {
   position: fixed;

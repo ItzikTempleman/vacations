@@ -16,7 +16,7 @@ class VacationController {
         this.router.post("/vacations", verificationMiddleware.verifyIsAdmin,this.addVacation);
         this.router.put("/vacations/:id",verificationMiddleware.verifyIsAdmin, this.updateVacation);
         this.router.delete("/vacations/:id", verificationMiddleware.verifyIsAdmin, this.deleteVacation);
-        this.router.get("/vacations/images/:imageName", verificationMiddleware.verifyLoggedIn, this.getImage);
+        this.router.get("/vacations/images/:imageName", this.getImage);
 
         this.router.post("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.likeVacation.bind(this));
         this.router.delete("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.unlikeVacation.bind(this));
