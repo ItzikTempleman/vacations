@@ -1,20 +1,26 @@
-import { useTitle } from "../../../Utils/UseTitle";
+import { useTitle } from "../../../utils/UseTitle";
 import "./RegisterUser.css";
 import { UserModel } from "../../../Models/user-model/UserModel";
-import { notify } from "../../../Utils/Notify";
+import { notify } from "../../../utils/Notify";
 import { userService } from "../../../Services/UserService";
 import { useForm } from "react-hook-form";
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
 
 export function RegisterUser() {
     useTitle("Registration");
-    const { register, handleSubmit } = useForm<UserModel>();
+
+    const [showPassword, setShowPassword] = useState(false);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<UserModel>({ mode: "onChange" });
 
     async function send(user: UserModel) {
         try {
             await userService.registerUser(user);
-
+           
             notify.success("Welcome " + user.firstName + " " + user.familyName)
+            reset();
         } catch (err: any) {
             notify.error(err)
         }
@@ -27,41 +33,70 @@ export function RegisterUser() {
 
             <form onSubmit={handleSubmit(send)}>
                 <div className="form-container">
-                    <TextField 
+                    <TextField
                         label="Enter first name"
                         placeholder="first name"
                         {...register("firstName")}
                     />
-                    <TextField 
+                    <TextField
                         label="Enter family name"
                         placeholder="family name"
                         {...register("familyName")}
                     />
-       
-                    <TextField 
-                     type="email"
-                        label="Enter email "
-                        placeholder="email"
-                        {...register("email")}
+
+                    <TextField
+                        autoComplete="email"
+                        label="Enter email"
+                        placeholder="Email"
+                        fullWidth
+                        {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Enter a valid email"
+                            }
+                        })}
+                        error={!!errors.email}
+                        helperText={errors.email?.message} />
+
+                    <TextField
+                        autoComplete="current-password"
+                        label="Enter password"
+                        placeholder="Password"
+                        fullWidth
+                        type={showPassword ? "text" : "password"}
+                        {...register("password", {
+                            required: "Password is required",
+                            minLength: { value: 8, message: "At least 8 characters" }
+                        })}
+                        error={!!errors.password}
+                        helperText={errors.password?.message}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        edge="end"
+                                        tabIndex={-1}
+                                        onClick={() => setShowPassword((s) => !s)}
+                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
                     />
-                    <TextField 
-                    autoComplete="new-password"
-                    type="password" 
-                        label="Create a password"
-                        placeholder="generate password"
-                        {...register("password", { required: true, minLength: 8 })}
-                    />
-             
-            
+
+
                     <Button
                         type="submit"
-                    fullWidth
+                        fullWidth
                         style={{ backgroundColor: "#1e5b8c", color: "white" }}
                         variant="contained"
                     >
                         Register
                     </Button>
-            </div>
+                </div>
             </form>
         </div>
     );

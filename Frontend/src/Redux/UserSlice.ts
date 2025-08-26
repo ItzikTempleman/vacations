@@ -12,10 +12,10 @@ function logoutUser(_: UserModel, __: PayloadAction<UserModel>): null {
 export const userSlice = createSlice(
     {
         name: "users",
-        initialState: new UserModel(),
+        initialState: null as UserModel | null,
         reducers: {
         registrationAndLogin:registerOrLogin,
-        logout:logoutUser
+        logout: () => null,
         }
     }
 );

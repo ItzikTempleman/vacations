@@ -7,8 +7,8 @@ import { LikeModel } from "../Models/LikeModel";
 import { likesSlice } from "./LikeSlice";
 
 export type AppState = {
-    user: UserModel,
-    vacation:VacationModel[],
+    user: UserModel| null;
+    vacation:VacationModel[];
     likes:LikeModel[]
 };
 

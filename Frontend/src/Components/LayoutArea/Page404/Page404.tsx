@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useTitle } from "../../../Utils/UseTitle";
+import { useTitle } from "../../../utils/UseTitle";
 import "./Page404.css";
 
 export function Page404() {
