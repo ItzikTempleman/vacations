@@ -8,20 +8,18 @@ import "./Home.css";
 export function Home() {
 
     const vacations = useSelector((state: AppState) => state.vacation);
-    console.log(vacations);
     if (!vacations) return null;
-
 
     useEffect(() => {
         vacationService.getAllVacations();
-    }, []
+      }, []
     );
 
     return (
         <div className="Home">
             {
                 vacations.map(
-                    v => <VacationCard key={v.id} vacation={v} />
+                    v => <VacationCard key={v.id} vacation={v}/>
                 )
             }
         </div>
