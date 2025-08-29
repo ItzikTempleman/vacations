@@ -5,10 +5,6 @@ function registerOrLogin(_: UserModel, action: PayloadAction<UserModel>) {
     return action.payload;
 };
 
-function logoutUser(_: UserModel, __: PayloadAction<UserModel>): null {
-    return null
-};
-
 export const userSlice = createSlice(
     {
         name: "users",

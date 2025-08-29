@@ -49,10 +49,19 @@
   color: inherit;
 }
 
-
 .registration-container a:focus,
 .registration-container button:focus { 
   font-weight: bold; 
   font-size: 18px;
  color: white;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  width: 180px;
+}
+.user-info>*{
+  color: white;
 }

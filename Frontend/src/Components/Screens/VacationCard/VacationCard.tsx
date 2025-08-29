@@ -15,7 +15,11 @@ export function VacationCard({ vacation }: VacationProps) {
     useEffect(
         () => {
             vacationService.getLikesCount(vacation.id)
-                .then((count) => setLikes(count))
+                .then((count) => {
+                    setLikes(count)
+                    console.log("likes: "+ count)
+                }
+                )
                 .catch(() => setLikes(0));
         }, [vacation.id]
     );
@@ -29,7 +33,6 @@ export function VacationCard({ vacation }: VacationProps) {
 
         return `${day}/${month}/${year}`;
     }
-
 
     return (
         <div className="VacationCard">
@@ -47,7 +50,7 @@ export function VacationCard({ vacation }: VacationProps) {
                 <div className="like-icon">
                     <FavoriteBorderTwoToneIcon />
                 </div>
-                  <span>{likes}</span>
+                <span>{likes}</span>
             </div>
 
             <div className="vacation-content">

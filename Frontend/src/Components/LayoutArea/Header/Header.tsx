@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/Store";
 import { accountProtection } from "../../../utils/AccountProtection";
 import { notify } from "../../../utils/Notify";
-
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 export function Header() {
 
@@ -26,9 +26,9 @@ export function Header() {
 
   return (
     <div className="Header">
-<div className="center-container">
-  <h2>Welcome to Dream Vacations</h2>
-</div>
+      <div className="center-container">
+        <h2>Welcome to Dream Vacations</h2>
+      </div>
       <nav className="registration-container">
         {!user && (
           <>
@@ -37,23 +37,23 @@ export function Header() {
               <span className="label">Register</span>
             </NavLink>
 
-            <span className="sep">|</span>
-
             <NavLink to="/login">
               <LoginIcon className="mui-icon" />
               <span className="label">Login</span>
             </NavLink>
-             <span className="sep">|</span>
+           
           </>
-          )
+        )
         }
+
         {user && accountProtection.isUser() && (
           <>
-            <NavLink to="/profile">
-              <AccountCircleIcon className="mui-icon"/>
-              <span className="label">Profile</span>
-            </NavLink>
-            <span className="sep">|</span>
+            <span className="user-info">
+              <PermIdentityIcon />
+              <h3>{user.firstName} {user.familyName} |
+            {user.roleId === 1 ? " (admin)" : " (user)"}</h3>
+            </span>
+            
             <Button onClick={logout} >
               <LogoutIcon className="mui-icon" />
               <span className="label">Logout</span>

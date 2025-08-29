@@ -2,7 +2,7 @@ import { OkPacketParams } from "mysql2";
 import { cyber } from "../2-utils/cyber";
 import { dal } from "../2-utils/dal";
 import { CredentialsModel } from "../3-models/credential-model";
-import { AuthorizationError, ValidationError } from "../3-models/error-models";
+import { AuthorizationError, ResourceNotFoundError, ValidationError } from "../3-models/error-models";
 import { Role } from "../3-models/role";
 import { UserModel } from "../3-models/user-model";
 
@@ -22,7 +22,7 @@ class UserService {
 
     }
 
-        public async login(credentials: CredentialsModel): Promise<string> {
+    public async login(credentials: CredentialsModel): Promise<string> {
         credentials.password = cyber.hash(credentials.password);
         const sql = "select * from users where email=? and password=?";
         const values = [credentials.email, credentials.password];
@@ -43,6 +43,14 @@ class UserService {
         const values = [email];
         const users = await dal.execute(sql, values) as UserModel[];
         return users.length > 0
+    }
+
+
+    public async removeUserAccount(id: number): Promise<void> {
+        const sql = "delete from users where id=?";
+        const values = [id];
+        const info: OkPacketParams = await dal.execute(sql, values) as OkPacketParams;
+        if (info.affectedRows === 0) throw new ResourceNotFoundError(id);
     }
 };
 

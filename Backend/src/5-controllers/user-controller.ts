@@ -13,6 +13,7 @@ class UserController {
         this.router.post("/register", this.register);
         this.router.post("/login", this.login);
         this.router.get("/users", this.getAllUsers);
+        this.router.delete("/users/:userId", this.removeUserAccount);
     }
 
     private async register(request: Request, response: Response) {
@@ -31,6 +32,14 @@ class UserController {
         const users = await userService.getAllUsers();
         response.json(users);
     }
+
+    private async removeUserAccount(request: Request, response: Response) {
+        const userId = +request.params.userId;
+        await userService.removeUserAccount(userId);
+        response.sendStatus(StatusCode.NoContent);
+    }
+
+
 };
 
 export const userController = new UserController();
