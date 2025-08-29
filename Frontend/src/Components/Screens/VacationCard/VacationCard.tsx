@@ -4,25 +4,64 @@ import "./VacationCard.css";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 import { vacationService } from "../../../Services/VacationService";
+import { notify } from "../../../utils/Notify";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../Redux/Store";
 
 type VacationProps = {
     vacation: VacationModel;
 }
 export function VacationCard({ vacation }: VacationProps) {
+    const userId = useSelector((thisUser: AppState) => thisUser.user.id);
+    const vacationId = vacation.id;
 
-    const [likes, setLikes] = useState<number | null>(null);
+    let key = "";
+    if (userId) {
+        key = `${userId}, ${vacationId}`
+    }
+
+
+    //reading likes count
+    const [likes, readLikesState] = useState<number>(0);
+
+    //manage toggling
+    const [liked, setLiked] = useState<boolean>(false);
+
 
     useEffect(
         () => {
             vacationService.getLikesCount(vacation.id)
                 .then((count) => {
-                    setLikes(count)
-                    console.log("likes: "+ count)
+                    readLikesState(count ?? 0)
                 }
                 )
-                .catch(() => setLikes(0));
+                .catch(() => readLikesState(0));
+
+            setLiked(!!(key&& localStorage.getItem(key)))
         }, [vacation.id]
     );
+
+
+    async function toggleLike() {
+        try {
+            if (liked) {
+                await vacationService.unlikeVacation(vacation.id);
+                setLiked(false);
+                readLikesState((prevLikes) => Math.max(0, prevLikes - 1));
+                if(key) localStorage.removeItem(key);
+            } else {
+                await vacationService.likeVacation(vacation.id!);
+                setLiked(true);
+                readLikesState((likeCount) => likeCount + 1);
+                if(key) localStorage.setItem(key, "1");
+            }
+        }
+        catch (err: any) {
+            notify.error(err.message);
+        };
+    }
+
 
     function formatDate(input: string): string {
         const date = new Date(input);
@@ -47,8 +86,8 @@ export function VacationCard({ vacation }: VacationProps) {
             <div className="vacation-dates">
                 <CalendarMonthIcon className="calendar-icon" />
                 <span>{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
-                <div className="like-icon">
-                    <FavoriteBorderTwoToneIcon />
+                <div className="like-icon" onClick={toggleLike}>
+                    {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
                 </div>
                 <span>{likes}</span>
             </div>

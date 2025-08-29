@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { Page404 } from "../Page404/Page404";
+import { Page404 } from "../../Screens/Page404/Page404";
 import { RegisterUser } from "../../Screens/RegisterUser/RegisterUser";
 import { LoginScreen } from "../../Screens/LoginScreen/LoginScreen";
 import { Home } from "../../Screens/Home/Home";

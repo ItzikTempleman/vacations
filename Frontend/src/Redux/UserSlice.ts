@@ -5,13 +5,18 @@ function registerOrLogin(_: UserModel, action: PayloadAction<UserModel>) {
     return action.payload;
 };
 
+function logoutUser(user: UserModel, _: PayloadAction<UserModel>) {
+     user=== new UserModel();
+};
+
+
 export const userSlice = createSlice(
     {
         name: "users",
         initialState: null as UserModel | null,
         reducers: {
         registrationAndLogin:registerOrLogin,
-        logout: () => null,
+        logout: logoutUser
         }
     }
 );

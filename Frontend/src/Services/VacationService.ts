@@ -4,24 +4,36 @@ import { appConfig } from "../utils/AppConfig";
 import { store } from "../Redux/Store";
 import { addVacation, deleteVacation, initVacations, updateVacation } from "../Redux/VacationSlice";
 import { notify } from "../utils/Notify";
+import { UserModel } from "../Models/user-model/UserModel";
+import { jwtDecode } from "jwt-decode";
+import { Role } from "../Models/user-model/Role";
 
 
 class VacationService {
 
-  private getAuth(): AxiosRequestConfig {
-    const token = localStorage.getItem("token") ?? "";
-    return { headers: { Authorization: `Bearer ${token}` } };
-  }
+    private getAuth(): AxiosRequestConfig {
+        const token = localStorage.getItem("token") ?? "";
+        return { headers: { Authorization: `Bearer ${token}` } };
+    }
 
-  private getAuthMultipart(): AxiosRequestConfig {
-    const token = localStorage.getItem("token") ?? "";
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data"
-      }
-    };
-  }
+    private getRole(): UserModel {
+        const token = localStorage.getItem("token") ?? "";
+        try {
+            return jwtDecode<UserModel>(token);
+        } catch {
+            return null;
+        }
+    }
+
+    private getAuthMultipart(): AxiosRequestConfig {
+        const token = localStorage.getItem("token") ?? "";
+        return {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
+            }
+        };
+    }
 
     public async getAllVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl, this.getAuth());
@@ -59,18 +71,32 @@ class VacationService {
     };
 
     public async deleteVacation(vacationId: number): Promise<void> {
-        await axios.delete(appConfig.vacationsUrl + vacationId,this.getAuth());
+        await axios.delete(appConfig.vacationsUrl + vacationId, this.getAuth());
         await this.unlikeVacation(vacationId)
         store.dispatch(deleteVacation(vacationId));
     };
 
-    public async unlikeVacation(vacationId: number): Promise<void> {
-        axios.delete(appConfig.likeUrl + vacationId, this.getAuth());
+    public async likeVacation(vacationId: number): Promise<void> {
+        if (this.getRole()?.roleId === Role.Admin) {
+            throw new Error("Admin cannot like a vacation - restricted to regular users");
+        }
+        try {
+            await axios.post(appConfig.likeUrl + vacationId, null, this.getAuth());
+        } catch (err: any) {
+            throw new Error(err?.response?.data ?? err.message ?? "Like failed");
+        }
     };
 
-        public async likeVacation(vacationId: number): Promise<void> {
-        axios.post(appConfig.likeUrl + vacationId, this.getAuth());
-    };
+    public async unlikeVacation(vacationId: number): Promise<void> {
+        if (this.getRole()?.roleId === Role.Admin) {
+            throw new Error("Admin cannot unlike a vacation - restricted to regular users");
+        }
+        try {
+            await axios.delete(appConfig.likeUrl + vacationId, this.getAuth());
+        } catch (err: any) {
+            throw new Error(err?.response?.data ?? err.message ?? "Unlike failed");
+        }
+    }
 };
 
 export const vacationService = new VacationService();
