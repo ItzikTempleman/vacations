@@ -4,6 +4,7 @@ import { Page404 } from "../../Screens/Page404/Page404";
 import { RegisterUser } from "../../Screens/RegisterUser/RegisterUser";
 import { LoginScreen } from "../../Screens/LoginScreen/LoginScreen";
 import { Home } from "../../Screens/Home/Home";
+import { AddVacation } from "../../Screens/AddVacation/AddVacation";
 
 
 export function Routing() {
@@ -16,7 +17,7 @@ export function Routing() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/register" element={<RegisterUser />} />
                 <Route path="/login" element={<LoginScreen />} />
-               
+                <Route path="/add-vacation" element={<AddVacation/>} />
             </Routes>
         </div>
     );

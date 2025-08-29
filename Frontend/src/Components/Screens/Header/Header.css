@@ -4,7 +4,7 @@
   justify-content: space-between;
     width: 100%;
     height: 100%;
-  background: linear-gradient(135deg, #bee7f1, #0083b0);
+  background: #0083b0 ;
 }
 
 .registration-container {
@@ -15,21 +15,23 @@
 }
 .center-container {
   display: flex;
-  align-self: center;
-  align-content: center;
-  width: 100%;
-  align-items: center;   
-  justify-content: center; 
-  height: 100vh;  
-}
-.center-container>h2{
-  font-style: italic;
-  color: white;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: auto;            
+  height: 100%;                  
+  padding-left: 120px;  
 }
 
-.sep{
-  color: white;
+
+
+.center-container>h2{
+  font-style: italic;
+  color: rgb(218, 189, 0);
+  align-items: start;
+
 }
+
+
 .registration-container a,
 .registration-container button {
   width: 120px;

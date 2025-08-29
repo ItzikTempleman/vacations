@@ -86,6 +86,7 @@ export function VacationCard({ vacation }: VacationProps) {
             <div className="vacation-dates">
                 <CalendarMonthIcon className="calendar-icon" />
                 <span>{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
+                
                 <div className="like-icon" onClick={toggleLike}>
                     {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
                 </div>

@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Header.css";
 import { Button } from "@mui/material";
 import { userService } from "../../../Services/UserService";

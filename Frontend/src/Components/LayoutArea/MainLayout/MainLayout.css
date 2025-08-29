@@ -3,7 +3,7 @@
     box-sizing: border-box;
     display: grid;
     grid-template-rows: 60px minmax(0, 1fr) 60px;  
-    grid-template-columns: minmax(120px, 10%) 1fr;
+    grid-template-columns: minmax(100px, 8%) 1fr;
 }
 
 .MainLayout > * {
@@ -17,7 +17,7 @@ header, footer {
 }
 
 aside, footer {
-    border: solid 0.1px grey;
+
 }
 
 aside, main {
