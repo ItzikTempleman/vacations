@@ -1,3 +1,53 @@
 .AddVacation {
-	
+  background: url("/Assets/images/2.avif") center / cover no-repeat;
+  height: 80vh;
+  z-index: 0;
+  margin: 4px;
+  gap: 0;
+  border-radius: 4px;
+
+}
+
+.AddVacation>p {
+  color: rgb(218, 189, 0);
+  font-style: italic;
+  font-size: 30px;
+
+}
+
+.image-upload-container {
+  padding: 6px;
+  width: 200px;
+  border: 1.5px solid lightgray;
+  margin: 10px;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  cursor: pointer;
+}
+
+.add-vacation-form {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  border-radius: 10px;
+  height: auto;
+  background-color: rgb(252, 249, 246);
+  padding: 10px;
+
+  box-shadow: 0 2px 2px rgba(17, 15, 10, 10);
+  margin: 10px auto;
+}
+
+.input-field {
+  margin: 16px;
+
 }

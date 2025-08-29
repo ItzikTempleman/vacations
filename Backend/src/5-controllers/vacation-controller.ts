@@ -19,7 +19,7 @@ class VacationController {
         this.router.get("/vacations/images/:imageName", this.getImage);
 
         this.router.post("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.likeVacation.bind(this));
-        this.router.delete("/vacations/liked/:vacationId", verificationMiddleware.verifyIsUser, this.unlikeVacation.bind(this));
+        this.router.delete("/vacations/liked/:vacationId", verificationMiddleware.verifyLoggedIn, this.deleteVacation.bind(this));
         this.router.get("/vacations/liked/:vacationId", verificationMiddleware.verifyLoggedIn, this.getVacationTotalLikedCount.bind(this));
 
     };

@@ -7,7 +7,7 @@ import { jwtDecode } from "jwt-decode";
 import { Role } from "../../../Models/user-model/Role";
 export function Menu() {
 
-    function getRole(): UserModel {
+    function getUser(): UserModel {
         const token = localStorage.getItem("token") ?? "";
         try {
             return jwtDecode<UserModel>(token);
@@ -17,7 +17,7 @@ export function Menu() {
     }
 
     const isAdmin = function (): boolean {
-        return getRole().roleId === Role.Admin;
+        return getUser().roleId === Role.Admin;
     }
 
     return (

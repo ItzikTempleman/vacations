@@ -47,8 +47,8 @@
   cursor: pointer;
 }
 
-.mui-icon {
-  color: inherit;
+.user-info >h3{
+  font-size: 14px;
 }
 
 .registration-container a:focus,

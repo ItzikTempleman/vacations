@@ -33,7 +33,9 @@ class VacationService {
                 "Content-Type": "multipart/form-data"
             }
         };
+    
     }
+
 
     public async getAllVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl, this.getAuth());
@@ -66,7 +68,7 @@ class VacationService {
             const updatedVacation = response.data;
             store.dispatch(updateVacation(updatedVacation));
         } catch (err: any) {
-            notify.error(err.message);
+            notify.error(err);
         };
     };
 

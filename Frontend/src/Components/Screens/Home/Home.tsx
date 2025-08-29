@@ -8,6 +8,8 @@ import { useTitle } from "../../../utils/UseTitle";
 
 export function Home() {
     useTitle("Home");
+
+    
     const vacations = useSelector((state: AppState) => state.vacation);
     if (!vacations) return null;
 

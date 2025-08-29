@@ -9,8 +9,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/Store";
 import { accountProtection } from "../../../utils/AccountProtection";
 import { notify } from "../../../utils/Notify";
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-
+import PersonIcon from '@mui/icons-material/Person';
 export function Header() {
 
   const user = useSelector((state: AppState) => state.user);
@@ -48,7 +47,7 @@ export function Header() {
         {user && accountProtection.isUser() && (
           <>
             <span className="user-info">
-              <PermIdentityIcon />
+              <PersonIcon />
               <h3>{user.firstName} {user.familyName} |
             {user.roleId === 1 ? " (admin)" : " (user)"}</h3>
             </span>

@@ -80,7 +80,7 @@ export function VacationCard({ vacation }: VacationProps) {
 
                 <img src={vacation.imageUrl} />
                 <div className="destination-card">
-                    <p className="vacation-destination">{vacation.destination}</p>
+                    <p>{vacation.destination}</p>
                 </div>
             </div>
             <div className="vacation-dates">
