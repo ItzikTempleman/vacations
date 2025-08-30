@@ -9,6 +9,7 @@ import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { NavLink, useNavigate } from "react-router-dom";
+import EmailIcon from '@mui/icons-material/Email';
 
 export function LoginScreen() {
     useTitle("Login");
@@ -37,6 +38,14 @@ export function LoginScreen() {
                     label="Enter email"
                     placeholder="Email"
                     fullWidth
+                                                            InputProps={
+                        {
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <EmailIcon />
+                                </InputAdornment>
+                            )
+                        }}
                     {...register("email", {
                         required: "Email is required",
                         pattern: {

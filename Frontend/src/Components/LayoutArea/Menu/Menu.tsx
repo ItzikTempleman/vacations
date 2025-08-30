@@ -12,18 +12,14 @@ export function Menu() {
 
     return (
         <div className="Menu">
-
             <NavLink to="/home" className="nav-link">
-                <div className="icon-color"> <HomeIcon /></div>
+                <div className="icon-color"><HomeIcon/></div>
                 <span className="menu-label">Home</span>
             </NavLink>
-
-            <div className="divider"></div>
             {
                 isAdmin  && (
                     <NavLink to="/add-vacation" className="nav-link">
-                        <div className="icon-color"> <BeachAccessIcon /></div>
-
+                        <div className="icon-color"><BeachAccessIcon/></div>
                         <span className="menu-label">New</span>
                     </NavLink>
                 )

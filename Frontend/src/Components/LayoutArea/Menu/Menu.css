@@ -12,27 +12,36 @@
 white, white, white
   )
 }
-
 .nav-link {
+  margin-top: 30px;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-weight: normal;
+  outline: none;
 }
 
-.menu-label, .icon-color>*{
-color: white;
-font-size: 12px;
+.nav-link:focus,
+.nav-link:focus-visible {
+  outline: none;             
 }
-.nav-link:focus { font-weight: bold; }
 
+.menu-label, 
+.icon-color > * {
+  color: white;
+  font-size: 16px;
+  line-height: 1;      
+  display: flex;
+  align-items: center;        
+}
 
+.nav-link:focus-within {
+  font-weight: bold;
+}
 
-.divider {
-  height: 1px;
-  width: 100%;
-  margin: 10px 0;
-  background: white ; 
+.nav-link:focus-within .menu-label,
+.nav-link:focus-within .icon-color > * {
+  color: rgb(223, 185, 123);
 }

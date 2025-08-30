@@ -22,16 +22,10 @@
   padding-left: 120px;  
 }
 
-
-
-.center-container>h2{
-  font-size: 30px;
-  font-style: italic;
-  color: rgb(218, 189, 0);
+.center-container>h3{
   align-items: start;
-
+  color: white;
 }
-
 
 .registration-container a,
 .registration-container button {

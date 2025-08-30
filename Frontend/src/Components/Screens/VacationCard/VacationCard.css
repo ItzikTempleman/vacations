@@ -22,7 +22,6 @@
   left: 6px;
   right: 6px;              
   padding: 6px 10px;
-  border-radius: 6px;
 }
 
 .vacation-content {
@@ -48,12 +47,10 @@
 
 .vacation-dates {
   display: flex;
-  box-shadow: 1px 1px 1px 0.5px gray;
-margin: 4px;
-border-radius: 2px;
+margin: 1px;
   align-items: center;   
-  gap: 6px;             
-  padding: 6px;
+  gap: 1px;             
+  padding: 1px;
 }
 
 .calendar-icon {
@@ -71,9 +68,9 @@ border-radius: 2px;
   bottom: 6px;
   left: 6px;
   margin: 0;
+
   color: white;
-  font-size: 26px;
-  text-shadow: 0 2px 4px gray;
+  font-size: 20px;
 }
 
 .like-icon {
