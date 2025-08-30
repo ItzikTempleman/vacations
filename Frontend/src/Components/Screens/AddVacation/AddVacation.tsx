@@ -15,13 +15,12 @@ export function AddVacation() {
 
 
     async function send(vacation: VacationModel): Promise<void> {
-         vacation.image = (vacation.image as unknown as FileList)[0];
+        vacation.image = (vacation.image as unknown as FileList)[0];
         try {
-            
-            const formattedTakeOffTime = vacation.departureDate.replace("T", " "); 
-            vacation.departureDate=formattedTakeOffTime;
-            const formattedLandingOffTime = vacation.returnDate.replace("T", " "); 
-            vacation.returnDate=formattedLandingOffTime;
+            const formattedTakeOffTime = vacation.departureDate.replace("T", " ");
+            vacation.departureDate = formattedTakeOffTime;
+            const formattedLandingOffTime = vacation.returnDate.replace("T", " ");
+            vacation.returnDate = formattedLandingOffTime;
             await vacationService.addVacation(vacation);
             notify.success("Created vacation");
             navigate("/home");
@@ -31,12 +30,9 @@ export function AddVacation() {
     }
 
     return (
-         <div className="AddVacation">
-            <p>Add a new vacation</p>
-        <div className="add-vacation-form">
-            
-            <form onSubmit={handleSubmit(send)} className="vacation-form">
-
+        <div className="AddVacation">
+            <form onSubmit={handleSubmit(send)} className="add-vacation-form">
+                <h2 className="add-vacation-title">Add a new vacation</h2>
                 <div className="input-field">
                     <TextField
                         label="Destination "
@@ -46,18 +42,25 @@ export function AddVacation() {
                 </div>
 
                 <div className="input-field">
-                    <TextField className="input-field-desc"
-                        label="Description"
-                        multiline
-                        minRows={6}
-                        placeholder="Tell us about your vacation"
-                        {...register("description")}
-                        
-                    />
+<TextField
+  className="input-field-desc"
+  label="Description"
+  multiline
+  minRows={6}
+  placeholder="Tell us about your vacation"
+  fullWidth
+  {...register("description")}
+  sx={{
+    "& .MuiInputBase-inputMultiline": {
+      maxHeight: 160,
+      overflowY: "auto"
+    }
+  }}
+/>
                 </div>
 
                 <div className="input-field">
-                    <div><FlightTakeoffIcon /><label>starts on</label></div>
+                    <div className="add-flight-dates"><FlightTakeoffIcon /><label>starts on</label></div>
                     <TextField
                         type="datetime-local"
                         {...register("departureDate")}
@@ -65,20 +68,17 @@ export function AddVacation() {
                 </div>
 
                 <div className="input-field">
-                    <div><FlightLandIcon /><label>ends on</label></div>
+                    <div className="add-flight-dates"><FlightLandIcon /><label>ends on</label></div>
                     <TextField
                         type="datetime-local"
-                        {...register("returnDate")}
-                    />
+                        {...register("returnDate")}/>
                 </div>
-
                 <div className="input-field">
-                    <TextField 
-                    type="number"
+                    <TextField
+                        type="number"
                         label="Price "
                         placeholder="Price"
-                        {...register("price")}
-                    />
+                        {...register("price")}/>
                 </div>
                 <div className="image-upload-container">
                     <p className="image-label">Upload image</p>
@@ -86,22 +86,18 @@ export function AddVacation() {
                         type="file"
                         accept="image/*"
                         {...register("image")}
-                        className="image-input"
-                    />
+                        className="image-input"/>
                 </div>
                 <div className="addBtn">
-                    <Button
+                    <Button className="add-btn"
                         type="submit"
-
-                        style={{ backgroundColor: "#1e5b8c", color: "white" }}
-                        variant="contained"
-                    >
+                        variant="contained">
                         Save
                     </Button>
                 </div>
             </form >
 
         </div >
-        </div>
+
     );
 }

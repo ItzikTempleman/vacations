@@ -1,23 +1,29 @@
 .AddVacation {
   background: url("/Assets/images/2.avif") center / cover no-repeat;
-  height: 80vh;
-  z-index: 0;
-  margin: 4px;
-  gap: 0;
-  border-radius: 4px;
-
+  min-height: 90vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.AddVacation>p {
-  color: rgb(218, 189, 0);
-  font-style: italic;
-  font-size: 30px;
-
+.add-vacation-form {
+     margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 280px;
+    height: auto; 
+    box-shadow: 1px 2px black, 0 6px 18px black;
+    background-color:white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .image-upload-container {
   padding: 6px;
-  width: 200px;
   border: 1.5px solid lightgray;
   margin: 10px;
   background-color: white;
@@ -29,25 +35,31 @@
   cursor: pointer;
 }
 
-.add-vacation-form {
+.add-vacation-title{
+  color: #0083b0;
+}
+.add-flight-dates{
+  margin: 20px;
+}
 
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  border-radius: 10px;
-  height: auto;
-  background-color: rgb(252, 249, 246);
-  padding: 10px;
+.input-field-desc textarea {
+  height: 160px;
+  overflow-y: auto;
+  resize: none;
+}
 
-  box-shadow: 0 2px 2px rgba(17, 15, 10, 10);
-  margin: 10px auto;
+.MuiTextField-root .MuiInputBase-root {
+  background-color: white;
+  border-radius: 6px; 
 }
 
 .input-field {
   margin: 16px;
+}
 
+.add-btn{
+    width: 100%;
+  background-color: #0083b0 !important;
+  color: white !important;
+  align-self: center;
 }

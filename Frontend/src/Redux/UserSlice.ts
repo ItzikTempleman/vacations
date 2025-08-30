@@ -5,8 +5,8 @@ function registerOrLogin(_: UserModel, action: PayloadAction<UserModel>) {
     return action.payload;
 };
 
-function logoutUser(user: UserModel, _: PayloadAction<UserModel>) {
-     user=== new UserModel();
+function logoutUser(): null{
+     return null;
 };
 
 

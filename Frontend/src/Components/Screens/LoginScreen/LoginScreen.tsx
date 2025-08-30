@@ -7,8 +7,8 @@ import { userService } from "../../../Services/UserService";
 import { notify } from "../../../utils/Notify";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
-import { useNavigate } from "react-router-dom";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export function LoginScreen() {
     useTitle("Login");
@@ -29,59 +29,66 @@ export function LoginScreen() {
 
     return (
         <div className="LoginScreen">
+            <form className="login-form" onSubmit={handleSubmit(send)}>
 
-            <h2 className="header-login-register-title">Log in</h2>
+                <h2 className="login-title">Log in</h2>
+                <TextField
+                    autoComplete="email"
+                    label="Enter email"
+                    placeholder="Email"
+                    fullWidth
+                    {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                            message: "Enter a valid email"
+                        }
+                    })}
+                    error={!!errors.email}
+                    helperText={errors.email?.message} />
 
-            <form onSubmit={handleSubmit(send)}>
-                <div className="login-form-container">
-                    <TextField
-                        autoComplete="email"
-                        label="Enter email"
-                        placeholder="Email"
-                        fullWidth
-                        {...register("email", {
-                            required: "Email is required",
-                            pattern: {
-                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: "Enter a valid email"
-                            }
-                        })}
-                        error={!!errors.email}
-                        helperText={errors.email?.message} />
+                <TextField
+                    autoComplete="current-password"
+                    label="Enter password"
+                    placeholder="Password"
+                    fullWidth
+                    type={showPassword ? "text" : "password"}
+                    {...register("password", {
+                        required: "Password is required",
+                        minLength: { value: 8, message: "At least 8 characters" }
+                    })}
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    edge="end"
+                                    tabIndex={-1}
+                                    onClick={() => setShowPassword((s) => !s)}
+                                    aria-label={showPassword ? "Hide password" : "Show password"}
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        )
+                    }}
+                />
+                <Button
+                    type="submit"
+                    className="login-button"
+                    variant="contained">
+                    Log in
+                </Button>
 
-                    <TextField
-                        autoComplete="current-password"
-                        label="Enter password"
-                        placeholder="Password"
-                        fullWidth
-                        type={showPassword ? "text" : "password"}
-                        {...register("password", {
-                            required: "Password is required",
-                            minLength: { value: 8, message: "At least 8 characters" }
-                        })}
-                        error={!!errors.password}
-                        helperText={errors.password?.message}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        edge="end"
-                                        tabIndex={-1}
-                                        onClick={() => setShowPassword((s) => !s)}
-                                        aria-label={showPassword ? "Hide password" : "Show password"}
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-
-                    <Button type="submit"
-                        fullWidth
-                        style={{ backgroundColor: "#1e5b8c", color: "white" }}
-                        variant="contained">Log in</Button>
-                </div>
+                <nav className="register">
+                    <p className="no-account-text">Don't have an account?</p>
+                    <NavLink to="/register" className="register-link">
+                        <PersonAddIcon className="register-icon" />
+                        <span className="register-label">Register</span>
+                    </NavLink>
+                </nav>
+                
             </form>
         </div>
     );

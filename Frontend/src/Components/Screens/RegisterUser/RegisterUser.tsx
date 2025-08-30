@@ -18,7 +18,7 @@ export function RegisterUser() {
     async function send(user: UserModel) {
         try {
             await userService.registerUser(user);
-           
+
             notify.success("Welcome " + user.firstName + " " + user.familyName)
             reset();
         } catch (err: any) {
@@ -28,11 +28,8 @@ export function RegisterUser() {
 
     return (
         <div className="RegisterUser">
-
-            <h2 className="header-login-register-title">Register </h2>
-
-            <form onSubmit={handleSubmit(send)}>
-                <div className="form-container">
+            <form className="registration-form" onSubmit={handleSubmit(send)}>
+                     <h2 className="registration-title">Register </h2>
                     <TextField
                         label="Enter first name"
                         placeholder="first name"
@@ -86,17 +83,12 @@ export function RegisterUser() {
                             )
                         }}
                     />
-
-
                     <Button
                         type="submit"
-                        fullWidth
-                        style={{ backgroundColor: "#1e5b8c", color: "white" }}
-                        variant="contained"
-                    >
+                        className="register-button"
+                        variant="contained">
                         Register
                     </Button>
-                </div>
             </form>
         </div>
     );

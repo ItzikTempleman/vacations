@@ -1,24 +1,39 @@
-.header-login-register-title{
-  color: #1e5b8c;
+.RegisterUser{
+  display: flex;
+  justify-content: center;   
+  align-items: flex-start;   
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(330deg, #e4bc97, white, white);
+  margin: 0;
+  padding-top: 60px; 
 }
 
-.form-container {
+.registration-form{
+     margin: 40px;
     border-radius: 10px;
-    padding: 40px;
+    padding: 60px;
     width: 280px;
-    margin: 0 auto;
     height: auto; 
-    background-color: rgb(211, 240, 255);
+    box-shadow: 1px 2px black, 0 6px 18px black;
+    background-color:white;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
 }
 
-.form-container button {
-  align-self: center;
+.registration-title{
+  color: #0083b0;
 }
 
 .MuiTextField-root .MuiInputBase-root {
   background-color: white;
   border-radius: 6px; 
+}
+
+.register-button {
+  width: 100%;
+  background-color: #0083b0 !important;
+  color: white !important;
+  align-self: center;
 }

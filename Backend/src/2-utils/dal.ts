@@ -1,8 +1,6 @@
 import mysql2, { createPool, PoolOptions, QueryError, QueryResult } from "mysql2";
 import appConfig from "./app-config";
 
-
-
 class DAL {
     private options: PoolOptions = {
         host: appConfig.mysqlHost,

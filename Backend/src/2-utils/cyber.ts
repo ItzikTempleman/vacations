@@ -5,9 +5,6 @@ import crypto from "crypto";
 import appConfig from "./app-config";
 
 class Cyber {
-
-
-
     public hash(plainText: string): string {
         const hashText = crypto.createHmac("sha512", appConfig.hashSaltKey).update(plainText).digest("hex");
         return hashText;
@@ -47,4 +44,5 @@ class Cyber {
         }
     }
 };
+
 export const cyber = new Cyber();

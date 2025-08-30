@@ -16,10 +16,11 @@ class VacationService {
         return { headers: { Authorization: `Bearer ${token}` } };
     }
 
-    private getRole(): UserModel {
+    private getRole(): UserModel | null {
         const token = localStorage.getItem("token") ?? "";
         try {
-            return jwtDecode<UserModel>(token);
+            const decoded = jwtDecode<{ user: UserModel }>(token);
+            return decoded.user ?? null;
         } catch {
             return null;
         }
@@ -33,7 +34,7 @@ class VacationService {
                 "Content-Type": "multipart/form-data"
             }
         };
-    
+
     }
 
 

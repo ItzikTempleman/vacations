@@ -5,6 +5,7 @@ import { userSlice } from "../Redux/UserSlice";
 import axios from "axios";
 import { appConfig } from "../utils/AppConfig.ts";
 import { CredentialsModel } from "../Models/user-model/CredentialsModel";
+import { clearVacations } from "../Redux/VacationSlice.ts";
 
 type DecodedToken = { user: UserModel };
 
@@ -42,6 +43,7 @@ class UserService {
     
     public logout(): void {
         store.dispatch(userSlice.actions.logout());
+    store.dispatch(clearVacations());
         localStorage.removeItem("token");
     };
 }

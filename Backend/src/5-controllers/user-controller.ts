@@ -38,8 +38,6 @@ class UserController {
         await userService.removeUserAccount(userId);
         response.sendStatus(StatusCode.NoContent);
     }
-
-
 };
 
 export const userController = new UserController();

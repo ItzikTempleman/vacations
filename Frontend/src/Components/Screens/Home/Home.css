@@ -1,15 +1,23 @@
 .Home {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  height: 100vh;
-  width: 100%;        
-  background: url("/Assets/images/1.jpg") center / cover no-repeat;
-  z-index: 0;
+  flex-wrap: wrap;   
+  min-height: 100vh;         
+  width: 100%;
+  background: linear-gradient(330deg, #e4bc97, white, white);
+  align-content: flex-start;  
+  align-items: flex-start;    
+  justify-content: center;   
+  gap: 24px;                   
 }
 
+.no-vacations-text {
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
-.Home> * {
-  position: relative;
-  z-index: 1;
+.no-vacations-text>h2 {
+  color: #0083b0;
 }

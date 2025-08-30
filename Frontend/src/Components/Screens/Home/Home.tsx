@@ -8,10 +8,10 @@ import { useTitle } from "../../../utils/UseTitle";
 
 export function Home() {
     useTitle("Home");
+    const user = useSelector((state: AppState) => state.user);
 
-    
     const vacations = useSelector((state: AppState) => state.vacation);
-    if (!vacations) return null;
+    if (!vacations) return;
 
     useEffect(() => {
         vacationService.getAllVacations();
@@ -20,6 +20,13 @@ export function Home() {
 
     return (
         <div className="Home">
+            {
+                !user && (
+                    <div className="no-vacations-text">
+                        <h2>You must log in to view vacation offerings</h2>
+                    </div>
+                )
+            }
             {
                 vacations.map(
                     v => <VacationCard key={v.id} vacation={v} />

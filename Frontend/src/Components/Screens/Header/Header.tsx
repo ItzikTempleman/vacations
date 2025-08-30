@@ -1,7 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from '@mui/icons-material/Logout';
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import "./Header.css";
 import { Button } from "@mui/material";
 import { userService } from "../../../Services/UserService";
@@ -19,7 +18,7 @@ export function Header() {
   async function logout(): Promise<void> {
     notify.success(`Good bye ${user.firstName} ${user.familyName}`)
     userService.logout();
-    navigate("/home");
+    navigate("/login");
   }
 
   return (
@@ -30,16 +29,11 @@ export function Header() {
       <nav className="registration-container">
         {!user && (
           <>
-            <NavLink to="/register">
-              <PersonAddIcon className="mui-icon" />
-              <span className="label">Register</span>
-            </NavLink>
-
             <NavLink to="/login">
               <LoginIcon className="mui-icon" />
               <span className="label">Login</span>
             </NavLink>
-           
+          
           </>
         )
         }

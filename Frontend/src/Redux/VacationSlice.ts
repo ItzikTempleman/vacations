@@ -41,10 +41,11 @@ export const vacationSlice = createSlice(
             initVacations: initVacationReducer,
             addVacation: addVacationReducer,
             updateVacation: updateVacationReducer,
-            deleteVacation: deleteVacationReducer
+            deleteVacation: deleteVacationReducer,
+            clearVacations: () => []
         }
     }
 );
 
-export const { initVacations, addVacation, updateVacation, deleteVacation } = vacationSlice.actions;
+export const { initVacations, addVacation, updateVacation, deleteVacation,clearVacations} = vacationSlice.actions;
 export const vacationReducer = vacationSlice.reducer;
