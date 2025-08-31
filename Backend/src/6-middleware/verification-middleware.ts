@@ -30,6 +30,7 @@ class VerificationMiddleware {
         }
     }
 
+    
     public readonly verifyIsAdmin = (request: Request, response: Response, next: NextFunction) => {
         try {
             const authHeader = (request.headers as any)["authorization"] as string | undefined;

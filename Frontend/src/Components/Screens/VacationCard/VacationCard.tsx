@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 type VacationProps = {
     vacation: VacationModel;
 }
+
 export function VacationCard({ vacation }: VacationProps) {
     const userId = useSelector((state: AppState) => state.user.id);
     const vacationId = vacation.id;
@@ -26,27 +27,23 @@ export function VacationCard({ vacation }: VacationProps) {
 
 
     //reading likes count
-    const [likes, readLikesState] = useState<number>(0);
+    const [likes, setLikeState] = useState<number>(0);
 
     //manage toggling
     const [liked, setLiked] = useState<boolean>(false);
 
-
     useEffect(
         () => {
             vacationService.getLikesCount(vacation.id)
-                .then((count) => {
-                    readLikesState(count ?? 0)
-                }
-                )
-                .catch(() => readLikesState(0));
+                .then((count) => setLikeState(count ?? 0))
+                .catch(() => setLikeState(0));
 
             setLiked(!!(key && localStorage.getItem(key)))
         }, [vacation.id]
     );
 
     async function moveToInfo(): Promise<void> {
-      navigate(`/vacations/${vacation.id}`);
+      navigate("/vacations/"+vacation.id);
     }
 
     async function toggleLike() {
@@ -54,12 +51,12 @@ export function VacationCard({ vacation }: VacationProps) {
             if (liked) {
                 await vacationService.unlikeVacation(vacation.id);
                 setLiked(false);
-                readLikesState((prevLikes) => Math.max(0, prevLikes - 1));
+                setLikeState((prevLikes) => Math.max(0, prevLikes - 1));
                 if (key) localStorage.removeItem(key);
             } else {
                 await vacationService.likeVacation(vacation.id!);
                 setLiked(true);
-                readLikesState((likeCount) => likeCount + 1);
+                setLikeState((likeCount) => likeCount + 1);
                 if (key) localStorage.setItem(key, "1");
             }
         }
@@ -83,7 +80,6 @@ export function VacationCard({ vacation }: VacationProps) {
         <div className="VacationCard">
 
             <div className="image-container">
-
                 <img src={vacation.imageUrl} />
                 <div className="destination-card">
                     <p>{vacation.destination}</p>
@@ -116,6 +112,5 @@ export function VacationCard({ vacation }: VacationProps) {
 
             </div>
         </div>
-
     );
 }

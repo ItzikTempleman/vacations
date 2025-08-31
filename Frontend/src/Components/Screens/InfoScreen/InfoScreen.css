@@ -1,8 +1,60 @@
+
 .InfoScreen {
-	
+  position: relative;
+  margin: 20px;
+  padding: 16px;
+  height: 88vh;
+  background: #fff;
 }
 
-img{
-    width: 80%;
-    height: 80%;
+
+.back-btn {
+  position: absolute !important;
+  top: 14px;
+  left: 14px;
+  z-index: 10;
+  background-color: #0083b0 !important;
 }
+
+
+.vacation-image-container {
+  display: grid;
+  margin: 40px;    
+  overflow: hidden;
+}
+
+.vacation-image-container > img,
+.vacation-image-container > .dates {
+  grid-area: 1 / 1;       
+}
+
+.vacation-image-container > img {
+  display: block;          
+  width: 100%;
+  height: auto;
+}
+
+
+.dates {
+  align-self: start;
+  justify-self: start;
+  margin: 12px 0 0 12px; 
+  display: flex;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 6px;
+  z-index: 1;
+
+}
+.dates h2 { margin: 0; }
+
+
+.title-and-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: 90px;
+  margin-top: 12px;    
+}
+
+

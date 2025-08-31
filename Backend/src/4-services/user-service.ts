@@ -8,8 +8,12 @@ import { UserModel } from "../3-models/user-model";
 
 class UserService {
 
-    public async register(user: UserModel): Promise<string> {
 
+
+
+
+    
+    public async register(user: UserModel): Promise<string> {
         const taken = await this.isEmailTaken(user.email);
         if (taken) throw new ValidationError("Email already exists");
         const sql = "insert into users(firstName, familyName, email, password, roleId) values(?,?,?,?,?)";
