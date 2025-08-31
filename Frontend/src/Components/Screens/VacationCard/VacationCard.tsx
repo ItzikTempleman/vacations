@@ -8,14 +8,17 @@ import { notify } from "../../../utils/Notify";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/Store";
-
+import { Button } from "@mui/material";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useNavigate } from "react-router-dom";
 type VacationProps = {
     vacation: VacationModel;
 }
 export function VacationCard({ vacation }: VacationProps) {
-    const userId = useSelector((thisUser: AppState) => thisUser.user.id);
+    const userId = useSelector((state: AppState) => state.user.id);
     const vacationId = vacation.id;
-
+    const navigate= useNavigate();
+    
     let key = "";
     if (userId) {
         key = `${userId}, ${vacationId}`
@@ -38,10 +41,13 @@ export function VacationCard({ vacation }: VacationProps) {
                 )
                 .catch(() => readLikesState(0));
 
-            setLiked(!!(key&& localStorage.getItem(key)))
+            setLiked(!!(key && localStorage.getItem(key)))
         }, [vacation.id]
     );
 
+    async function moveToInfo(): Promise<void> {
+      navigate(`/vacations/${vacation.id}`);
+    }
 
     async function toggleLike() {
         try {
@@ -49,12 +55,12 @@ export function VacationCard({ vacation }: VacationProps) {
                 await vacationService.unlikeVacation(vacation.id);
                 setLiked(false);
                 readLikesState((prevLikes) => Math.max(0, prevLikes - 1));
-                if(key) localStorage.removeItem(key);
+                if (key) localStorage.removeItem(key);
             } else {
                 await vacationService.likeVacation(vacation.id!);
                 setLiked(true);
                 readLikesState((likeCount) => likeCount + 1);
-                if(key) localStorage.setItem(key, "1");
+                if (key) localStorage.setItem(key, "1");
             }
         }
         catch (err: any) {
@@ -86,7 +92,7 @@ export function VacationCard({ vacation }: VacationProps) {
             <div className="vacation-dates">
                 <CalendarMonthIcon className="calendar-icon" />
                 <span>{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
-                
+
                 <div className="like-icon" onClick={toggleLike}>
                     {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
                 </div>
@@ -95,12 +101,21 @@ export function VacationCard({ vacation }: VacationProps) {
 
             <div className="vacation-content">
                 <p className="vacation-description">{vacation.description}</p>
+                <div>
+                    <Button className="more-info-btn"
+                        onClick={moveToInfo}
+                        variant="contained">
+                        More info
+                        <ArrowForwardIosIcon />
+                    </Button>
+
+                </div>
                 <div className="vacation-price">
                     <h2>{vacation.price}₪</h2>
                 </div>
 
             </div>
-
         </div>
+
     );
 }

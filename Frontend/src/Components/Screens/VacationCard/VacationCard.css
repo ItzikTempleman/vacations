@@ -82,3 +82,9 @@ margin: 1px;
 color: rgb(255, 0, 115);
 cursor: pointer;
 }
+
+.more-info-btn{
+  align-self: center;
+  background-color: #0083b0 !important;
+  color: white !important;
+}

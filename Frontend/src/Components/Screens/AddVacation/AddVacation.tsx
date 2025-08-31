@@ -37,41 +37,38 @@ export function AddVacation() {
                     <TextField
                         label="Destination "
                         placeholder="Where are you going?"
-                        {...register("destination")}
-                    />
+                        {...register("destination")}/>
                 </div>
 
                 <div className="input-field">
-<TextField
-  className="input-field-desc"
-  label="Description"
-  multiline
-  minRows={6}
-  placeholder="Tell us about your vacation"
-  fullWidth
-  {...register("description")}
-  sx={{
-    "& .MuiInputBase-inputMultiline": {
-      maxHeight: 160,
-      overflowY: "auto"
-    }
-  }}
-/>
+                    <TextField
+                        className="input-field-desc"
+                        label="Description"
+                        multiline
+                        minRows={6}
+                        placeholder="Tell us about your vacation"
+                        fullWidth
+                        {...register("description")}
+                        sx={{
+                            "& .MuiInputBase-inputMultiline": {
+                                maxHeight: 160,
+                                overflowY: "auto"
+                            }
+                        }}/>
                 </div>
 
                 <div className="input-field">
                     <div className="add-flight-dates"><FlightTakeoffIcon /><label>starts on</label></div>
                     <TextField
                         type="datetime-local"
-                        {...register("departureDate")}
-                    />
+                        {...register("departureDate")}/>
                 </div>
 
                 <div className="input-field">
                     <div className="add-flight-dates"><FlightLandIcon /><label>ends on</label></div>
                     <TextField
                         type="datetime-local"
-                        {...register("returnDate")}/>
+                        {...register("returnDate")} />
                 </div>
                 <div className="input-field">
                     <TextField
@@ -88,6 +85,7 @@ export function AddVacation() {
                         {...register("image")}
                         className="image-input"/>
                 </div>
+
                 <div className="addBtn">
                     <Button className="add-btn"
                         type="submit"
@@ -96,8 +94,6 @@ export function AddVacation() {
                     </Button>
                 </div>
             </form >
-
         </div >
-
     );
 }
