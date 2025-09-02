@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@mui/material";
+import { Button, } from "@mui/material";
 import { useTitle } from "../../../utils/UseTitle";
 import "./InfoScreen.css";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -9,6 +9,9 @@ import { vacationService } from "../../../Services/VacationService";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { notify } from "../../../utils/Notify";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../Redux/Store";
+import { Role } from "../../../Models/user-model/Role";
 
 export function InfoScreen() {
     useTitle("Info");
@@ -17,6 +20,8 @@ export function InfoScreen() {
     const navigate = useNavigate();
     const [vacation, setVacation] = useState<VacationModel| null>(null);
 
+   const user = useSelector((s: AppState) => s.user);
+  const isAdmin = !!user && user.roleId === Role.Admin;
     useEffect(() => {
         if (!vacationId) {
             navigate("/home");
@@ -51,45 +56,44 @@ export function InfoScreen() {
             notify.error(err);
         }
     }
-
     if (!vacation) return null;
 
     return (
 <div className="InfoScreen">
-  <div className="header">
+  <div className="top-section">
     <Button className="back-btn" variant="contained" onClick={returnToHome}>
-      <ArrowBackIosIcon sx={{ fontSize: 16 }} />
+      <ArrowBackIosIcon />
       Back
     </Button>
 
-    <div className="actions">
+{
+  isAdmin &&(
+    <div className="edit-and-delete">
       <NavLink to={`/vacations/edit/${vacationId}`}>
-        <EditNoteIcon />
+        <EditNoteIcon fontSize="large" />
       </NavLink>
-      <span>|</span>
       <NavLink to={"#"} onClick={() => deleteVacation()}>
-        <DeleteIcon />
+        <DeleteIcon fontSize="large" />
       </NavLink>
     </div>
-  </div>
-
-  <div className="media">
-    <div className="frame">
-      <img src={vacation.imageUrl} alt={vacation.destination} />
+  )
+}
+</div>
+  <div className="main-container">
+    <div className="image-div">
+      <img src={vacation.imageUrl}  />
     </div>
     <div className="dates">
       {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}
     </div>
-  </div>
-
-  <div className="content">
-    <div className="title-price">
+    <div className="title">
       <h1>{vacation.destination}</h1>
-      <div className="price">{vacation.price} $</div>
     </div>
-    <p>{vacation.description}</p>
-  </div>
+        <Button className="price-btn" variant="contained">
+   {vacation.price} $
+    </Button>
+    <div className="content"><p>{vacation.description}</p></div>
+    </div>
 </div>
-
   );
 }
