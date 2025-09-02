@@ -7,16 +7,41 @@ import { appConfig } from "../utils/AppConfig.ts";
 import { CredentialsModel } from "../Models/user-model/CredentialsModel";
 import { clearVacations } from "../Redux/VacationSlice.ts";
 
-type DecodedToken = { user: UserModel };
+type DecodedToken = {
+    user: UserModel;
+    tokenExpiration?: number
+};
 
 class UserService {
+
+    private logoutTimer: number | null = null;
+
+    private scheduleLogoutFromToken(token: string) {
+        try {
+            const { tokenExpiration } = jwtDecode<DecodedToken>(token);
+            if (!tokenExpiration) return;
+            const delay = Math.max(0, tokenExpiration * 1000 - Date.now());
+            if (this.logoutTimer) clearTimeout(this.logoutTimer);
+            this.logoutTimer = setTimeout(() => {
+                this.logout(true), delay;
+            }
+            );
+        } catch {
+
+        }
+    };
 
     public constructor() {
         const token = localStorage.getItem("token");
         if (token) {
             const decoded = jwtDecode<DecodedToken>(token);
-            const dbUser = decoded.user
-            store.dispatch(userSlice.actions.registrationAndLogin(dbUser))
+            const notExpired = decoded?.tokenExpiration ? decoded.tokenExpiration * 1000 > Date.now() : true;
+            if (notExpired && decoded?.user) {
+                store.dispatch(userSlice.actions.registrationAndLogin(decoded.user));
+                this.scheduleLogoutFromToken(token);
+            } else {
+                this.logout(true);
+            }
         }
     };
 
@@ -40,10 +65,14 @@ class UserService {
     };
 
 
-    
-    public logout(): void {
+
+    public logout(_=false): void {
+        if (this.logoutTimer) {
+            clearTimeout(this.logoutTimer);
+            this.logoutTimer = null;
+        }
         store.dispatch(userSlice.actions.logout());
-    store.dispatch(clearVacations());
+        store.dispatch(clearVacations());
         localStorage.removeItem("token");
     };
 }

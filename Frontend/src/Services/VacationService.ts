@@ -75,8 +75,10 @@ class VacationService {
 
     public async deleteVacation(vacationId: number): Promise<void> {
         await axios.delete(appConfig.vacationsUrl + vacationId, this.getAuth());
-        await this.unlikeVacation(vacationId)
+      
+
         store.dispatch(deleteVacation(vacationId));
+        store.dispatch(initVacations())
     };
 
     public async likeVacation(vacationId: number): Promise<void> {

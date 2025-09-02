@@ -35,6 +35,7 @@ export function AddVacation() {
                 <h2 className="add-vacation-title">Add a new vacation</h2>
                 <div className="input-field">
                     <TextField
+                    fullWidth
                         label="Destination "
                         placeholder="Where are you going?"
                         {...register("destination")}/>
@@ -58,41 +59,41 @@ export function AddVacation() {
                 </div>
 
                 <div className="input-field">
-                    <div className="add-flight-dates"><FlightTakeoffIcon /><label>starts on</label></div>
+                    <div className="add-flight-dates"><FlightTakeoffIcon /><h3>Departure</h3></div>
                     <TextField
+                    fullWidth
                         type="datetime-local"
                         {...register("departureDate")}/>
                 </div>
 
                 <div className="input-field">
-                    <div className="add-flight-dates"><FlightLandIcon /><label>ends on</label></div>
+                    <div className="add-flight-dates"><FlightLandIcon /><h3>Return</h3></div>
                     <TextField
                         type="datetime-local"
+                        fullWidth
                         {...register("returnDate")} />
                 </div>
-                <div className="input-field">
+                <div>
                     <TextField
+                    fullWidth
                         type="number"
-                        label="Price "
-                        placeholder="Price"
+                        label="Price $"
+                        placeholder="Price $"
                         {...register("price")}/>
                 </div>
                 <div className="image-upload-container">
-                    <p className="image-label">Upload image</p>
+                    <h3 className="image-label">Upload image</h3>
                     <input
                         type="file"
                         accept="image/*"
                         {...register("image")}
                         className="image-input"/>
                 </div>
-
-                <div className="addBtn">
                     <Button className="add-btn"
                         type="submit"
                         variant="contained">
                         Save
                     </Button>
-                </div>
             </form >
         </div >
     );

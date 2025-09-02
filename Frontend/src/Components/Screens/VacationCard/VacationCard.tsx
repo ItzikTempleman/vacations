@@ -37,7 +37,6 @@ export function VacationCard({ vacation }: VacationProps) {
             vacationService.getLikesCount(vacation.id)
                 .then((count) => setLikeState(count ?? 0))
                 .catch(() => setLikeState(0));
-
             setLiked(!!(key && localStorage.getItem(key)))
         }, [vacation.id]
     );
@@ -104,7 +103,6 @@ export function VacationCard({ vacation }: VacationProps) {
                         More info
                         <ArrowForwardIosIcon />
                     </Button>
-
                 </div>
                 <div className="vacation-price">
                     <h2>{vacation.price}₪</h2>

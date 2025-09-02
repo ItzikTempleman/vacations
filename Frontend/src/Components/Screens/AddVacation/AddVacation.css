@@ -10,36 +10,40 @@
 }
 
 .add-vacation-form {
-     margin: 20px;
+     margin: 16px;
     border-radius: 10px;
-    padding: 20px;
-    width: 280px;
+    padding: 12px;
+    width: 500px;
     height: auto; 
     box-shadow: 1px 2px black, 0 6px 18px black;
     background-color:white;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
 
+
 .image-upload-container {
-  padding: 6px;
-  border: 1.5px solid lightgray;
-  margin: 10px;
-  background-color: white;
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
   height: auto;
+  width: 180px;
   cursor: pointer;
+  border: 1.5px solid lightgray;
+  border-radius: 6px;
+  margin: auto;
+   display: block;       
+   padding: 6px;
+
 }
 
 .add-vacation-title{
   color: #0083b0;
 }
 .add-flight-dates{
-  margin: 20px;
+   display: flex;
+-ms-flex-align: start;
+align-items: center;
+  margin: 4px;
+  gap: 8px;
 }
 
 .input-field-desc textarea {
@@ -48,13 +52,8 @@
   resize: none;
 }
 
-.MuiTextField-root .MuiInputBase-root {
-  background-color: white;
-  border-radius: 6px; 
-}
-
-.input-field {
-  margin: 16px;
+.input-field{
+  margin: 2px;
 }
 
 .add-btn{

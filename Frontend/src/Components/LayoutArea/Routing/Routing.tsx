@@ -6,6 +6,7 @@ import { LoginScreen } from "../../Screens/LoginScreen/LoginScreen";
 import { Home } from "../../Screens/Home/Home";
 import { AddVacation } from "../../Screens/AddVacation/AddVacation";
 import { InfoScreen } from "../../Screens/InfoScreen/InfoScreen";
+import { EditVacation } from "../../Screens/EditVacation/EditVacation";
 
 
 
@@ -20,9 +21,8 @@ export function Routing() {
                 <Route path="/register" element={<RegisterUser />} />
                 <Route path="/login" element={<LoginScreen />} />
                 <Route path="/add-vacation" element={<AddVacation/>} />
-                <Route path="/vacations/:id" element={<InfoScreen />} /> {
-                    
-                }
+                <Route path="/vacations/:id" element={<InfoScreen />} /> 
+                <Route path="/vacations/edit/:id" element={<EditVacation/>} />
             </Routes>
         </div>
     );
