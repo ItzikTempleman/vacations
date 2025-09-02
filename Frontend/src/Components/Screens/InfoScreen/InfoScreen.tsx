@@ -19,9 +19,8 @@ export function InfoScreen() {
     const vacationId = Number(params.id);
     const navigate = useNavigate();
     const [vacation, setVacation] = useState<VacationModel| null>(null);
-
-   const user = useSelector((s: AppState) => s.user);
-  const isAdmin = !!user && user.roleId === Role.Admin;
+    const user = useSelector((s: AppState) => s.user);
+    const isAdmin = !!user && user.roleId === Role.Admin;
     useEffect(() => {
         if (!vacationId) {
             navigate("/home");
@@ -30,7 +29,7 @@ export function InfoScreen() {
         vacationService.getOneVacation(vacationId)
             .then(dbVacation => setVacation(dbVacation))
             .catch(err => notify.error(err));
-    }, [vacationId]
+       },[vacationId]
     );
 
     function formatDate(input: string): string {
@@ -66,18 +65,6 @@ export function InfoScreen() {
       Back
     </Button>
 
-{
-  isAdmin &&(
-    <div className="edit-and-delete">
-      <NavLink to={`/vacations/edit/${vacationId}`}>
-        <EditNoteIcon fontSize="large" />
-      </NavLink>
-      <NavLink to={"#"} onClick={() => deleteVacation()}>
-        <DeleteIcon fontSize="large" />
-      </NavLink>
-    </div>
-  )
-}
 </div>
   <div className="main-container">
     <div className="image-div">
@@ -87,8 +74,20 @@ export function InfoScreen() {
       {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}
     </div>
     <div className="title">
-      <h1>{vacation.destination}</h1>
+      <h2>{vacation.destination}</h2>
+{
+  isAdmin &&(
+    <div className="edit-and-delete">
+      <NavLink to={`/vacations/edit/${vacationId}`}>
+        <EditNoteIcon className="edit" fontSize="large" />
+      </NavLink>
+      <NavLink to={"#"} onClick={() => deleteVacation()}>
+        <DeleteIcon className="delete" fontSize="large" />
+      </NavLink>
     </div>
+  )
+}
+ </div>
         <Button className="price-btn" variant="contained">
    {vacation.price} $
     </Button>

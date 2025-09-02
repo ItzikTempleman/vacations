@@ -43,5 +43,5 @@ white, white, white
 
 .nav-link:focus-within .menu-label,
 .nav-link:focus-within .icon-color > * {
-  color: rgb(223, 185, 123);
+  color: rgb(223, 185, 123) !important;
 }

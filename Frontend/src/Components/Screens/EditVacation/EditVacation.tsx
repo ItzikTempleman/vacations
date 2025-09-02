@@ -30,14 +30,17 @@ export function EditVacation() {
             }).catch(err => notify.error(err));
     }, []);
 
+    function cancelUpdate(): void {
+        navigate(`/vacations/edit/${id}`)
+    };
 
-const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  const file = e.target.files?.[0];
-  if (!file) return;
-  setSelectedFile(file);                
-  setImage(URL.createObjectURL(file));  
-  e.target.value = "";                  
-};
+    const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setSelectedFile(file);
+        setImage(URL.createObjectURL(file));
+        e.target.value = "";
+    };
 
     async function send(vacation: VacationModel) {
         try {
@@ -59,14 +62,14 @@ const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
                 <div className="input-field">
                     <h3>Edit Destination</h3>
                     <TextField
-                    fullWidth
+                        fullWidth
                         {...register("destination")} />
                 </div>
 
                 <div className="input-field">
                     <h3>Edit Description</h3>
                     <TextField
-                    
+
                         className="input-field-desc"
                         multiline
                         minRows={6}
@@ -83,7 +86,7 @@ const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
                 <div className="edit-input-field">
                     <div className="edit-flight-dates"><h3>Edit departure date</h3></div>
                     <TextField
-                    fullWidth
+                        fullWidth
                         type="datetime-local"
                         {...register("departureDate")} />
                 </div>
@@ -91,14 +94,14 @@ const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
                 <div className="edit-input-field">
                     <div className="edit-flight-dates"><h3>Edit return date</h3></div>
                     <TextField
-                    fullWidth
+                        fullWidth
                         type="datetime-local"
                         {...register("returnDate")} />
                 </div>
                 <div>
                     <h3>Edit Price</h3>
                     <TextField
-                    fullWidth
+                        fullWidth
                         type="number"
                         {...register("price")} />
                 </div>
@@ -106,7 +109,7 @@ const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
                 <img className="image-preview" src={image} />
 
                 <div className="edit-image-upload-container">
-            
+
                     <input
                         type="file"
                         accept="image/*"
@@ -116,13 +119,21 @@ const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
                     />
                 </div>
 
+                <div className="btns-div">
 
-                <Button className="edit-btn"
-                    type="submit"
-                    variant="contained">
-                    Update
-                </Button>
+                    <Button className="edit-btn"
+                        type="submit"
+                        variant="contained">
+                        Update
+                    </Button>
 
+                    <Button className="cancel-btn"
+                        onClick={() => cancelUpdate()}
+                        variant="contained">
+                        Cancel
+                    </Button>
+                    
+                </div>
             </form >
 
         </div>

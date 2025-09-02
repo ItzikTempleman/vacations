@@ -16,9 +16,6 @@ header, footer {
     overflow: hidden;       
 }
 
-aside, footer {
-
-}
 
 aside, main {
     overflow: auto;        
