@@ -8,10 +8,11 @@ import { vacationService } from "../../../Services/VacationService";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FlightLandIcon from '@mui/icons-material/FlightLand';
+import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
 export function AddVacation() {
     useTitle("Add vacation");
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm<VacationModel>();
+    const { register, handleSubmit, getValues } = useForm<VacationModel>();
 
 
     async function send(vacation: VacationModel): Promise<void> {
@@ -35,10 +36,10 @@ export function AddVacation() {
                 <h2 className="add-vacation-title">Add a new vacation</h2>
                 <div className="input-field">
                     <TextField
-                    fullWidth
+                        fullWidth
                         label="Destination "
                         placeholder="Where are you going?"
-                        {...register("destination")}/>
+                        {...register("destination")} />
                 </div>
 
                 <div className="input-field">
@@ -55,15 +56,17 @@ export function AddVacation() {
                                 maxHeight: 160,
                                 overflowY: "auto"
                             }
-                        }}/>
+                        }} />
                 </div>
 
                 <div className="input-field">
                     <div className="add-flight-dates"><FlightTakeoffIcon /><h3>Departure</h3></div>
                     <TextField
-                    fullWidth
+                        fullWidth
                         type="datetime-local"
-                        {...register("departureDate")}/>
+                        {...register("departureDate", {
+                            required: "Departure date is required"
+                        })} />
                 </div>
 
                 <div className="input-field">
@@ -71,15 +74,18 @@ export function AddVacation() {
                     <TextField
                         type="datetime-local"
                         fullWidth
-                        {...register("returnDate")} />
+                        {...register("returnDate", {
+                            required: "Return date is required",
+                            validate: (val) => validateReturnAfterDeparture(getValues("departureDate"), val)
+                        })} />
                 </div>
                 <div>
                     <TextField
-                    fullWidth
+                        fullWidth
                         type="number"
                         label="Price $"
                         placeholder="Price $"
-                        {...register("price")}/>
+                        {...register("price")} />
                 </div>
                 <div className="image-upload-container">
                     <h3 className="image-label">Upload image</h3>
@@ -87,13 +93,13 @@ export function AddVacation() {
                         type="file"
                         accept="image/*"
                         {...register("image")}
-                        className="image-input"/>
+                        className="image-input" />
                 </div>
-                    <Button className="add-btn"
-                        type="submit"
-                        variant="contained">
-                        Save
-                    </Button>
+                <Button className="add-btn"
+                    type="submit"
+                    variant="contained">
+                    Save
+                </Button>
             </form >
         </div >
     );

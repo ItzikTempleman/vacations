@@ -7,13 +7,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../utils/Notify";
+import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
+
+function formatDate(datetimeLocal: string): string {
+    // "YYYY-MM-DDTHH:MM" -> "YYYY-MM-DD HH:MM"
+    return datetimeLocal ? datetimeLocal.replace("T", " ").slice(0, 16) : "";
+}
 
 
 export function EditVacation() {
     useTitle("Edit");
     const [image, setImage] = useState<string>("");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const { register, handleSubmit, setValue } = useForm<VacationModel>();
+    const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm<VacationModel>();
     const navigate = useNavigate();
     const params = useParams()
     const id = Number(params.id);
@@ -23,15 +29,16 @@ export function EditVacation() {
             .then(dbVacation => {
                 setValue("destination", dbVacation.destination);
                 setValue("description", dbVacation.description);
-                setValue("departureDate", dbVacation.departureDate);
-                setValue("returnDate", dbVacation.returnDate);
+                setValue("departureDate", formatDate(dbVacation.departureDate));
+                setValue("returnDate", formatDate(dbVacation.returnDate));
                 setValue("price", dbVacation.price);
                 setImage(dbVacation.imageUrl || "");
             }).catch(err => notify.error(err));
     }, []);
 
     function cancelUpdate(): void {
-        navigate(`/vacations/edit/${id}`)
+
+        navigate("/home")
     };
 
     const onPick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -88,7 +95,10 @@ export function EditVacation() {
                     <TextField
                         fullWidth
                         type="datetime-local"
-                        {...register("departureDate")} />
+                        {...register("departureDate")}
+                        error={!!errors.departureDate}
+                        helperText={errors.departureDate?.message}
+                    />
                 </div>
 
                 <div className="edit-input-field">
@@ -96,7 +106,14 @@ export function EditVacation() {
                     <TextField
                         fullWidth
                         type="datetime-local"
-                        {...register("returnDate")} />
+                        {...register("returnDate", {
+                            validate: (val) => validateReturnAfterDeparture(getValues("departureDate"), val)
+                        })
+                        }
+                        error={!!errors.returnDate}
+                        helperText={errors.returnDate?.message}
+
+                    />
                 </div>
                 <div>
                     <h3>Edit Price</h3>
@@ -106,7 +123,7 @@ export function EditVacation() {
                         {...register("price")} />
                 </div>
 
-                <img className="image-preview" src={image} />
+                {image && <img className="image-preview" src={image} />}
 
                 <div className="edit-image-upload-container">
 
@@ -132,7 +149,7 @@ export function EditVacation() {
                         variant="contained">
                         Cancel
                     </Button>
-                    
+
                 </div>
             </form >
 
