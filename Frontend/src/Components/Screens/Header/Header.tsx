@@ -33,7 +33,7 @@ export function Header() {
               <LoginIcon className="mui-icon" />
               <span className="label">Login</span>
             </NavLink>
-          
+
           </>
         )
         }
@@ -41,11 +41,17 @@ export function Header() {
         {user && accountProtection.isUser() && (
           <>
             <span className="user-info">
-              <PersonIcon />
-              <h3>{user.firstName} {user.familyName} |
-            {user.roleId === 1 ? " (admin)" : " (user)"}</h3>
+
+              <h3 className="user-name">
+                <span className="name-wrap">
+                  <PersonIcon fontSize="small" />
+                  {user.firstName} {user.familyName}
+                </span>
+              </h3>
+
+              <h3 className={`role-id ${user.roleId === 1 ? "admin" : ""}`}>{user.roleId === 1 ? "Admin" : "User"}</h3>
             </span>
-            
+
             <Button onClick={logout} >
               <LogoutIcon className="mui-icon" />
               <span className="label">Logout</span>

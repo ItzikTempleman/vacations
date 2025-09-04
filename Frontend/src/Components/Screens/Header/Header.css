@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-    width: 100%;
-    height: 100%;
-  background: #0083b0 ;
+  width: 100%;
+  height: 100%;
+  background: #0083b0;
 }
 
 .registration-container {
@@ -13,16 +13,17 @@
   align-items: center;
   gap: 8px;
 }
+
 .center-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: auto;            
-  height: 100%;                  
-  padding-left: 120px;  
+  margin-right: auto;
+  height: 100%;
+  padding-left: 120px;
 }
 
-.center-container>h3{
+.center-container>h3 {
   align-items: start;
   color: white;
 }
@@ -42,23 +43,43 @@
   cursor: pointer;
 }
 
-.user-info >h3{
+.user-info>h3 {
   font-size: 14px;
 }
 
 .registration-container a:focus,
-.registration-container button:focus { 
-  font-weight: bold; 
+.registration-container button:focus {
+  font-weight: bold;
   font-size: 18px;
- color: white;
-}
-
-.user-info{
-  display: flex;
-  flex-direction: row;
-  align-items: center; 
-  width: 180px;
-}
-.user-info>*{
   color: white;
 }
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  justify-content: center; 
+}
+
+.name-wrap {
+  display: flex;
+  align-items: center; 
+  gap: 6px;            
+}
+
+.user-name {
+  margin: 0;
+  line-height: 1;
+}
+
+.role-id.admin {
+  color: rgb(255, 116, 35);
+  font-size: 18px;
+}
+
+.user-info>* {
+  color: white;
+}
+
+.role-id {}
