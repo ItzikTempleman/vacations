@@ -14,85 +14,89 @@ import { AppState } from "../../../Redux/Store";
 import { Role } from "../../../Models/user-model/Role";
 
 export function InfoScreen() {
-    useTitle("Info");
-    const params = useParams();
-    const vacationId = Number(params.id);
-    const navigate = useNavigate();
-    const [vacation, setVacation] = useState<VacationModel| null>(null);
-    const user = useSelector((s: AppState) => s.user);
-    const isAdmin = !!user && user.roleId === Role.Admin;
-    useEffect(() => {
-        if (!vacationId) {
-            navigate("/home");
-            return;
-        };
-        vacationService.getOneVacation(vacationId)
-            .then(dbVacation => setVacation(dbVacation))
-            .catch(err => notify.error(err));
-       },[vacationId]
-    );
+  useTitle("Info");
+  const params = useParams();
+  const vacationId = Number(params.id);
+  const navigate = useNavigate();
+  const [vacation, setVacation] = useState<VacationModel | null>(null);
+  const user = useSelector((s: AppState) => s.user);
+  const isAdmin = !!user && user.roleId === Role.Admin;
+  useEffect(() => {
+    if (!vacationId) {
+      navigate("/home");
+      return;
+    };
+    vacationService.getOneVacation(vacationId)
+      .then(dbVacation => setVacation(dbVacation))
+      .catch(err => notify.error(err));
+  }, [vacationId]
+  );
 
-    function formatDate(input: string): string {
-        const date = new Date(input);
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
+  function formatDate(input: string): string {
+    const date = new Date(input);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
+  function returnToHome() {
+    navigate("/home");
+  }
+
+  async function deleteVacation() {
+    try {
+      const areYouSure = confirm("Remove this vacation?")
+      if (!areYouSure) return
+      await vacationService.deleteVacation(vacationId)
+      notify.success("Vacation removed")
+      navigate("/home")
+    } catch (err: unknown) {
+      notify.error(err);
     }
+  }
+  if (!vacation) return null;
 
-    function returnToHome() {
-        navigate("/home");
-    }
+  return (
+    <div className="InfoScreen">
+      <div className="top-section">
+        <Button className="back-btn" variant="contained" onClick={returnToHome}>
+          <ArrowBackIosIcon />
+          Back
+        </Button>
 
-    async function deleteVacation() {
-        try {
-            const areYouSure = confirm("Remove this vacation?")
-            if (!areYouSure) return
-            await vacationService.deleteVacation(vacationId)
-            notify.success("Vacation removed")
-            navigate("/home")
-        } catch (err: unknown) {
-            notify.error(err);
-        }
-    }
-    if (!vacation) return null;
+      </div>
+      <div className="main-container">
+        <div className="image-div">
+          <img src={vacation.imageUrl} />
+        </div>
+        <h2 className="dates">
+          {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}
+        </h2>
 
-    return (
-<div className="InfoScreen">
-  <div className="top-section">
-    <Button className="back-btn" variant="contained" onClick={returnToHome}>
-      <ArrowBackIosIcon />
-      Back
-    </Button>
 
-</div>
-  <div className="main-container">
-    <div className="image-div">
-      <img src={vacation.imageUrl}  />
+        
+        <div className="title">
+          <h2>{vacation.destination}</h2>
+          <h2 className="price-container">
+            {vacation.price} $
+          </h2>
+          {
+            isAdmin && (
+              <div className="edit-and-delete">
+                <NavLink to={`/vacations/edit/${vacationId}`}>
+                  <EditNoteIcon className="edit" fontSize="large" />
+                </NavLink>
+                <NavLink to={"#"} onClick={() => deleteVacation()}>
+                  <DeleteIcon className="delete" fontSize="large" />
+                </NavLink>
+              </div>
+            )
+          }
+        </div>
+        <div className="content"><p>{vacation.description}</p></div>
+
+      </div>
     </div>
-    <div className="dates">
-      {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}
-    </div>
-    <div className="title">
-      <h2>{vacation.destination}</h2>
-{
-  isAdmin &&(
-    <div className="edit-and-delete">
-      <NavLink to={`/vacations/edit/${vacationId}`}>
-        <EditNoteIcon className="edit" fontSize="large" />
-      </NavLink>
-      <NavLink to={"#"} onClick={() => deleteVacation()}>
-        <DeleteIcon className="delete" fontSize="large" />
-      </NavLink>
-    </div>
-  )
-}
- </div>
-        <Button className="price-btn" variant="contained">
-   {vacation.price} $
-    </Button>
-    <div className="content"><p>{vacation.description}</p></div>
-    </div>
-</div>
   );
 }

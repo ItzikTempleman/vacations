@@ -11,28 +11,18 @@
   margin-bottom: 30px;
 }
 
-.back-btn,
-.price-btn {
+.back-btn{
   background: #0b79d0 !important;
   padding: 6px 12px !important;
 }
 
-.price-btn {
-  width: 50%;
-}
-
-
-
 .title{
-    text-align: left;
-  color: #333;
- 
   display: flex;
   align-items: center;
   flex-direction: row;
-
-margin: 10px 0;
-justify-content: space-between;
+  margin: 10px 0;
+  justify-content: space-between;
+  position: relative;
 }
 
 .title >h2{
@@ -86,13 +76,11 @@ margin: 4px;
   background: white;
   padding: 6px 10px;
   border-radius: 6px;
-  font-size: 16px;
+
 }
 
 .content {
   overflow-y: auto;
-  border-radius: 8px;
-  border: solid #777676 2px;
   padding: 30px;
   width: 100%;
   margin: 20px 0;
@@ -103,6 +91,15 @@ margin: 4px;
   text-align: left;
   margin: 0;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 24px;     
   color: #333;
+  max-height: calc(24px *10);
+  overflow-y: auto;
+  white-space: pre-wrap; 
+}
+
+.price-container{
+  position: absolute;  
+  left: 50%;
+  transform: translateX(-50%);
 }

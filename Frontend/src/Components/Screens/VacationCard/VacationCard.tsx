@@ -18,8 +18,8 @@ type VacationProps = {
 export function VacationCard({ vacation }: VacationProps) {
     const userId = useSelector((state: AppState) => state.user.id);
     const vacationId = vacation.id;
-    const navigate= useNavigate();
-    
+    const navigate = useNavigate();
+
     let key = "";
     if (userId) {
         key = `${userId}, ${vacationId}`
@@ -42,7 +42,7 @@ export function VacationCard({ vacation }: VacationProps) {
     );
 
     async function moveToInfo(): Promise<void> {
-      navigate("/vacations/"+vacation.id);
+        navigate("/vacations/" + vacation.id);
     }
 
     async function toggleLike() {
@@ -80,9 +80,8 @@ export function VacationCard({ vacation }: VacationProps) {
 
             <div className="image-container">
                 <img src={vacation.imageUrl} />
-                <div className="destination-card">
-                    <p>{vacation.destination}</p>
-                </div>
+                <div className="image-gradient" />
+                <p className="destination-title">{vacation.destination}</p>
             </div>
             <div className="vacation-dates">
                 <CalendarMonthIcon className="calendar-icon" />
@@ -100,12 +99,13 @@ export function VacationCard({ vacation }: VacationProps) {
                     <Button className="more-info-btn"
                         onClick={moveToInfo}
                         variant="contained">
+
                         More info
                         <ArrowForwardIosIcon />
                     </Button>
                 </div>
                 <div className="vacation-price">
-                    <h2>{vacation.price}₪</h2>
+                    <h2>{vacation.price}$</h2>
                 </div>
 
             </div>

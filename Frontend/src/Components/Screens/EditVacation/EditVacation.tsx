@@ -78,16 +78,17 @@ export function EditVacation() {
                     <TextField
 
                         className="input-field-desc"
-                        multiline
+                             multiline
                         minRows={6}
-                        fullWidth
-                        {...register("description")}
+                        maxRows={6}
                         sx={{
-                            "& .MuiInputBase-inputMultiline": {
-                                maxHeight: 160,
+                            "& textarea": {
                                 overflowY: "auto"
                             }
-                        }} />
+                        }}
+                        fullWidth
+                        {...register("description")}
+ />
                 </div>
 
                 <div className="edit-input-field">

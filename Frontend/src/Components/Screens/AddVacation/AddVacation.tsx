@@ -48,15 +48,16 @@ export function AddVacation() {
                         label="Description"
                         multiline
                         minRows={6}
+                        maxRows={6}
+                        sx={{
+                            "& textarea": {
+                                overflowY: "auto"
+                            }
+                        }}
                         placeholder="Tell us about your vacation"
                         fullWidth
                         {...register("description")}
-                        sx={{
-                            "& .MuiInputBase-inputMultiline": {
-                                maxHeight: 160,
-                                overflowY: "auto"
-                            }
-                        }} />
+                    />
                 </div>
 
                 <div className="input-field">
