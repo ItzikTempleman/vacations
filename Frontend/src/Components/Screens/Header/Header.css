@@ -5,9 +5,10 @@
   gap: 6px;
   box-sizing: border-box;
   align-items: center;
-  border-bottom: 1px solid;
+
   white-space: nowrap;
   height: 100%;
+   background: linear-gradient(270deg, #c4effe, #feebd8, #c4effe);
 }
 
 .header-brand {
@@ -48,10 +49,12 @@
   color:  #d88902;
   width: 32px;
   height: 32px;
+   transition: transform 0.2s, color 0.2s;
 }
 
 .left-link:hover, .left-link svg:hover {
-  color: #a36802; 
+   color: #d88902;
+  transform: scale(1.1);
 }
 
 
@@ -108,7 +111,7 @@
 .login-logout-container:hover,
 .header-logout:hover {
   color: #0083b0;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .login-logout-container svg,

@@ -15,23 +15,26 @@ export function Home() {
 
     useEffect(() => {
         vacationService.getAllVacations();
-    }, []
-    );
+    }, []);
 
     return (
         <div className="Home">
-            {
-                !user && (
-                    <div className="no-vacations-text">
-                        <h2>You must log in to view vacation offerings</h2>
-                    </div>
-                )
-            }
-            {
-                vacations.map(
-                    v => <VacationCard key={v.id} vacation={v} />
-                )
-            }
+            
+            <div className="home-header">
+                <h2>Listed vacations</h2>
+            </div>
+
+            {!user && (
+                <div className="no-vacations-text">
+                    <h2>You must log in to view vacation offerings</h2>
+                </div>
+            )}
+
+            <div className="vacation-list">
+                {vacations.map(v => (
+                    <VacationCard key={v.id} vacation={v} />
+                ))}
+            </div>
         </div>
-    )
+    );
 }

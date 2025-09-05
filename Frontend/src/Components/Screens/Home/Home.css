@@ -1,13 +1,34 @@
 .Home {
   display: flex;
-  flex-wrap: wrap;   
-  min-height: 100vh;         
+  flex-direction: column;  
+  min-height: 100vh;
   width: 100%;
   background: linear-gradient(330deg, #e4bc97, white, white);
-  align-content: flex-start;  
-  align-items: flex-start;    
-  justify-content: center;   
-  gap: 24px;                   
+  padding: 16px 32px;      
+  box-sizing: border-box;
+}
+.home-header {
+  text-align: left;       
+  margin-bottom: 16px;
+  width: 100%; 
+  margin-left: 50px;
+  order: 0;
+}
+
+.home-header h2 {
+  margin: 0;
+  font-weight: bold;
+  color: #333;             
+}
+
+
+.vacation-list {
+  order: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start; 
+  width: 100%;
 }
 
 .no-vacations-text {
