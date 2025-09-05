@@ -9,56 +9,72 @@ import { AppState } from "../../../Redux/Store";
 import { accountProtection } from "../../../utils/AccountProtection";
 import { notify } from "../../../utils/Notify";
 import PersonIcon from '@mui/icons-material/Person';
+import { Role } from "../../../Models/user-model/Role";
+import HomeIcon from '@mui/icons-material/Home';
+
+import AddIcon from '@mui/icons-material/Add';
+
 export function Header() {
 
   const user = useSelector((state: AppState) => state.user);
-  const navigate = useNavigate();
 
+  const isAdmin = !!user && user.roleId === Role.Admin;
 
   async function logout(): Promise<void> {
     notify.success(`Good bye ${user.firstName} ${user.familyName}`)
     userService.logout();
-    navigate("/login");
   }
 
   return (
     <div className="Header">
-      <div className="center-container">
+ 
+      <div className="header-brand">
         <h3>Vacations</h3>
-      </div>
-      <nav className="registration-container">
-        {!user && (
-          <>
-            <NavLink to="/login">
-              <LoginIcon className="mui-icon" />
-              <span className="label">Login</span>
-            </NavLink>
+    
 
-          </>
-        )
-        }
+        <NavLink to="/home" className="left-link">
+          <HomeIcon />
+          <div className="left-link-text">Home</div>
+        </NavLink>
+
+        {isAdmin && (
+          <NavLink to="/add-vacation" className="left-link">
+            <AddIcon />
+            <div className="left-link-text">Add vacation</div>
+          </NavLink>
+        )}
+
+  </div>
+
+
+
+      <div className="header-account" >
+        {!user && (
+          <NavLink to="/login" className="login-logout-container">
+            <LoginIcon />
+            <p className="login-label">Login</p>
+          </NavLink>
+        )}
 
         {user && accountProtection.isUser() && (
           <>
-            <span className="user-info">
-
-              <h3 className="user-name">
-                <span className="name-wrap">
-                  <PersonIcon fontSize="small" />
-                  {user.firstName} {user.familyName}
-                </span>
-              </h3>
-
-              <h3 className={`role-id ${user.roleId === 1 ? "admin" : ""}`}>{user.roleId === 1 ? "Admin" : "User"}</h3>
+            <span className="header-user">
+              <span className="header-user-name">
+                <PersonIcon fontSize="small" />
+                {user.firstName} {user.familyName}
+              </span>
+              <span className={`header-role ${user.roleId === 1 ? "header-role-admin" : ""}`}>
+                {user.roleId === 1 ? "Admin" : "User"}
+              </span>
             </span>
 
-            <Button onClick={logout} >
-              <LogoutIcon className="mui-icon" />
-              <span className="label">Logout</span>
-            </Button>
+        <NavLink to="/login" className="login-logout-container" onClick={logout}  >
+            <LogoutIcon />
+            <p className="logout-label">Logout</p>
+          </NavLink>
           </>
         )}
-      </nav>
+      </div>
     </div>
   );
 }

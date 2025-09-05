@@ -1,85 +1,119 @@
 .Header {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 6px;
+  box-sizing: border-box;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  border-bottom: 1px solid;
+  white-space: nowrap;
   height: 100%;
-  background: #0083b0;
 }
 
-.registration-container {
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 40px;
+}
+
+.header-brand h3 {
+  margin: 0 24px 0 0;
+  font-size: 28px;
+  letter-spacing: 0.4px;
+  background: linear-gradient(180deg, #0093c4 0%, #0083b0 60%, #06698a 100%);
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.header-account {
   margin-left: auto;
+  margin-right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+}
+.left-link {
+  color:  #d88902; 
+  font-weight: 800;
+  font-size: 12px;
+  text-decoration: none;
+  gap: 4px;
+  transition: color 0.2s ease-in-out;
+}
+
+.left-link svg {
+  color:  #d88902;
+  width: 32px;
+  height: 32px;
+}
+
+.left-link:hover, .left-link svg:hover {
+  color: #a36802; 
+}
+
+
+.header-user {
+  display: flex;
+  align-items: center; 
+  gap: 12px; 
+}
+
+.header-user-name {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #4d4d4d;
+  font-weight: 800;
+  font-size: 18px;
+}
+.header-user-name svg{
+   color: #d88902;
+    width: 32px;
+  height: 32px;
+}
+.header-role {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  background: #4d4d4d;
+  padding: 6px 10px;
+  border-radius: 6px; 
 }
 
-.center-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-right: auto;
-  height: 100%;
-  padding-left: 120px;
-}
-
-.center-container>h3 {
-  align-items: start;
+.header-role-admin {
+  background: #d88902;
   color: white;
 }
 
-.registration-container a,
-.registration-container button {
-  width: 120px;
-  height: 40px;
-  border-radius: 12px;
+
+.login-logout-container,
+.header-logout {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: Arial;
-  color: white;
+  gap: 8px;
+  padding: 6px 10px;
+
+  background: transparent;
+  color: #0083b0;
+  font-weight: 700;
+  font-size: 16px;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
 }
 
-.user-info>h3 {
-  font-size: 14px;
+.login-logout-container:hover,
+.header-logout:hover {
+  color: #0083b0;
+  transform: scale(1.05);
 }
 
-.registration-container a:focus,
-.registration-container button:focus {
-  font-weight: bold;
-  font-size: 18px;
-  color: white;
+.login-logout-container svg,
+.header-logout svg {
+  width: 32px;
+  height: 32px;
+  color: #0083b0;
 }
-
-.user-info {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  justify-content: center; 
-}
-
-.name-wrap {
-  display: flex;
-  align-items: center; 
-  gap: 6px;            
-}
-
-.user-name {
-  margin: 0;
-  line-height: 1;
-}
-
-.role-id.admin {
-  color: rgb(255, 116, 35);
-  font-size: 18px;
-}
-
-.user-info>* {
-  color: white;
-}
-
-.role-id {}

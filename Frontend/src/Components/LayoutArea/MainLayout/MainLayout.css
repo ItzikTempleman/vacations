@@ -2,22 +2,24 @@
     height: 100vh;   
     box-sizing: border-box;
     display: grid;
-    grid-template-rows: 60px minmax(0, 1fr) 60px;  
-    grid-template-columns: minmax(110px, 8%) 1fr;
+   grid-template-columns: 1fr; 
 }
 
 .MainLayout > * {
     font-family: Arial;
 }
 
-header, footer {
-    grid-column: span 2;
-    height: 60px;          
+header {
+
+    height: 80px;          
     overflow: hidden;       
 }
+footer{
+        height: 30px;          
+    overflow: hidden;  
+}
 
-
-aside, main {
+ main {
     overflow: auto;        
     min-height: 0;
     min-width: 0;
