@@ -28,8 +28,6 @@ export function Report() {
      const rows: ChartRow[] = [];
 
 
-
-
       for (const v of vacations) {
         const id = v?.id;
         const cleanName = String(v?.destination ?? "").split(",")[0].trim();
@@ -51,12 +49,7 @@ export function Report() {
 
   return (
     <div className="Report">
-      <h2>Reports</h2>
-
-      <div className="likes-icon">
-        <FavoriteIcon />
-        <div className="likes-text">Amount of likes</div>
-      </div>
+      <h2>Likes per city</h2>
 
       <div className="graph">
         <div className="report-chart">
@@ -65,8 +58,7 @@ export function Report() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" interval={0} angle={-15} textAnchor="end" height={60} />
               <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Legend />
+
               <Bar dataKey="likes" name="Likes" fill="#42a5f5" />
             </BarChart>
           </ResponsiveContainer>

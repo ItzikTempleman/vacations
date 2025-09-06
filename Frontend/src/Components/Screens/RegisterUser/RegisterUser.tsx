@@ -10,16 +10,14 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 
 export function RegisterUser() {
     useTitle("Registration");
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, formState:
-        {
-            errors
-        }
-    } = useForm<UserModel>({ mode: "onChange" });
+    const { register, handleSubmit, formState: { errors } } = useForm<UserModel>({ mode: "onChange" });
 
 
     async function send(user: UserModel) {
@@ -35,9 +33,20 @@ export function RegisterUser() {
         }
     }
 
+
+    function returnToHome() {
+        navigate("/login");
+    }
+
+
     return (
         <div className="RegisterUser">
+
             <form className="registration-form" onSubmit={handleSubmit(send)}>
+                <Button className="back-btn-registration" variant="contained" onClick={returnToHome}>
+                    <ArrowBackIosIcon />
+                    Back
+                </Button>
                 <h2 className="registration-title">Register </h2>
                 <TextField
                     label="Enter first name"

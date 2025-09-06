@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { VacationModel } from "../../../Models/VacationModel";
 import "./VacationCard.css";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../utils/Notify";
@@ -27,10 +26,7 @@ export function VacationCard({ vacation }: VacationProps) {
     const navigate = useNavigate();
     const isAdmin = !!user && user.roleId === Role.Admin;
 
-    let key = "";
-    if (user.id) {
-        key = `${user.id}, ${vacationId}`
-    }
+    let key = (user.id) ? `${user.id}, ${vacationId}` : ""
 
 
     //reading likes count
@@ -38,9 +34,6 @@ export function VacationCard({ vacation }: VacationProps) {
 
     //manage toggling
     const [liked, setLiked] = useState<boolean>(false);
-
-
-
 
     useEffect(
         () => {
@@ -81,21 +74,17 @@ export function VacationCard({ vacation }: VacationProps) {
             await vacationService.deleteVacation(vacationId)
             notify.success("Vacation removed")
             navigate("/home")
-        } catch (err: unknown) {
+        } catch (err: any) {
             notify.error(err);
         }
     }
 
 
-    if (!vacation) return null;
-
     function formatDate(input: string): string {
         const date = new Date(input);
-
         const day = String(date.getDate()).padStart(2, "0");
         const month = String(date.getMonth() + 1).padStart(2, "0");
         const year = date.getFullYear();
-
         return `${day}/${month}/${year}`;
     }
 
@@ -106,7 +95,7 @@ export function VacationCard({ vacation }: VacationProps) {
                 <img src={vacation.imageUrl} />
                 <div className="image-gradient" />
                 <p className="destination-title">{vacation.destination}</p>
-                                            {
+                {
                     isAdmin && (
                         <>
                             <div className="edit-and-delete">
@@ -122,23 +111,13 @@ export function VacationCard({ vacation }: VacationProps) {
                 }
             </div>
 
-            <div className="vacation-dates">
-                <CalendarMonthIcon className="calendar-icon" />
-                <span className="dates-text">{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
 
-                {
-                    !isAdmin && (
-                        <>
-                            <div className="like-icon" onClick={toggleLike}>
-                                {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
-                            </div>
-                            <span>{likes}</span>
-                        </>
-                    )
-                }
-
-            </div>
-
+            <span className="dates-text">{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
+            {
+                !isAdmin && (
+                    <span className="like-icon" onClick={toggleLike}>{liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}<p>{likes}</p></span>
+                )
+            }
             <div className="vacation-content">
                 <p className="vacation-description">{vacation.description}</p>
                 <div>

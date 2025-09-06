@@ -30,11 +30,11 @@
 }
 
 .edit-and-delete svg {
-  color: #00d9ff;
+  color: #26be08;
 }
 
 .edit-and-delete :last-child  svg{
-  color: white;
+  color: rgb(225, 102, 102);
 } 
 
 .image-container {
@@ -45,17 +45,13 @@
 .vacation-content {
   display: flex;
   flex-direction: column;
-
   flex: 1;
   min-height: 0;
 }
 
 .vacation-description {
-  flex: 1;
-  min-height: 0;
   overflow-y: auto;
-  padding: 12px;
-  overflow-y: auto;
+
 }
 
 .vacation-price {
@@ -63,18 +59,6 @@
   text-align: right;
   font-weight: bold;
   padding: 6px;
-}
-
-.vacation-dates {
-  display: flex;
-  margin: 1px;
-  align-items: center;
-  gap: 1px;
-  padding: 1px;
-}
-
-.calendar-icon {
-  font-size: 20px;
 }
 
 .image-container img {
@@ -97,11 +81,18 @@
 }
 
 .like-icon {
-  margin-left: auto;
-  display: flex;
+ display: flex;
+ align-content: center;
+ align-items: center;
+ justify-content: center;
+ gap: 4px;
 }
 
-.like-icon>* {
+.like-icon p{
+font-size: 18px;
+}
+
+.like-icon svg {
   color: rgb(255, 0, 115);
   cursor: pointer;
 }

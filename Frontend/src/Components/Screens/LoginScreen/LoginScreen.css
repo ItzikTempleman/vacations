@@ -4,7 +4,7 @@
   align-items: flex-start;   
   height: 100vh;
   width: 100%;
-  background: linear-gradient(330deg, #e4bc97, white, white);
+ background: linear-gradient(330deg, #5f5e5e 0%, #b1b1b1 60%, #ffffff 100%);
   margin: 0;
   padding-top: 60px; 
 }
@@ -23,7 +23,7 @@
 }
 
 .login-title {
-  color: #0083b0;
+  color: #00d0ff;
 }
 
 .MuiTextField-root .MuiInputBase-root {
@@ -33,12 +33,12 @@
 
 .no-account-text{
   font-size: 14px;
-  color:#0083b0;
+  color:#4d4d4d;
 }
 .login-button {
   width: 100%;
   align-self: center;
-  background-color: #0083b0 !important;
+  background-color: #00d0ff !important;
   color: white !important;
 }
 
@@ -47,7 +47,7 @@
   align-items: center;
   gap: 4px;               
   text-decoration: none;
-  color: #0083b0;
+  color: #4d4d4d;
   cursor: pointer;
   justify-content: center; 
 }

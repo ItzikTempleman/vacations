@@ -4,6 +4,7 @@
   padding: 20px;
   height: 100vh;
   box-sizing: border-box;
+  background: linear-gradient(330deg, #5f5e5e 0%, #b1b1b1 60%, #ffffff 100%);
 }
 
 .top-section {
@@ -32,6 +33,7 @@
 
 
 .main-container {
+  background: white;
   position: relative;
   width: 60%;
   height: auto;
