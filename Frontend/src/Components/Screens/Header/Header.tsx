@@ -8,7 +8,7 @@ import { AppState } from "../../../Redux/Store";
 import { accountProtection } from "../../../utils/AccountProtection";
 import { notify } from "../../../utils/Notify";
 import { Role } from "../../../Models/user-model/Role";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -44,7 +44,7 @@ export function Header() {
         <h3>Vacations</h3>
 
         <NavLink to="/home" className="left-link">
-          <HomeIcon />
+          <HomeOutlinedIcon />
           <div className="left-link-text">Home</div>
         </NavLink>
 

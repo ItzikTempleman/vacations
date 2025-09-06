@@ -36,7 +36,9 @@
 }
 
 .add-vacation-title{
-  color: #0083b0;
+   text-align: left;
+  margin: 20 auto;
+  color: #7b7b7b ;
 }
 .add-flight-dates{
    display: flex;
@@ -44,6 +46,7 @@
 align-items: center;
   margin: 4px;
   gap: 8px;
+   color: #4d4d4d ;
 }
 
 .input-field-desc textarea {
@@ -57,8 +60,8 @@ align-items: center;
 }
 
 .add-btn{
-    width: 100%;
-  background-color: #0083b0 !important;
+    width: 40%;
+  background-color: #00d0ff !important;
   color: white !important;
   align-self: center;
 }

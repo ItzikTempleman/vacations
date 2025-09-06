@@ -66,14 +66,14 @@ export function EditVacation() {
             <form onSubmit={handleSubmit(send)} className="edit-vacation-form">
                 <h2 className="edit-vacation-title">Edit your vacation </h2>
                 <div className="input-field">
-                    <h3>Edit Destination</h3>
+                    <h3>Destination</h3>
                     <TextField
                         fullWidth
                         {...register("destination")} />
                 </div>
 
                 <div className="input-field">
-                    <h3>Edit Description</h3>
+                    <h3>Description</h3>
                     <TextField
 
                         className="input-field-desc"
@@ -91,7 +91,7 @@ export function EditVacation() {
                 </div>
 
                 <div className="edit-input-field">
-                    <div className="edit-flight-dates"><h3>Edit departure date</h3></div>
+                    <div className="edit-flight-dates"><h3>Departure</h3></div>
                     <TextField
                         fullWidth
                         type="datetime-local"
@@ -102,7 +102,7 @@ export function EditVacation() {
                 </div>
 
                 <div className="edit-input-field">
-                    <div className="edit-flight-dates"><h3>Edit return date</h3></div>
+                    <div className="edit-flight-dates"><h3>Return</h3></div>
                     <TextField
                         fullWidth
                         type="datetime-local"
@@ -115,8 +115,8 @@ export function EditVacation() {
 
                     />
                 </div>
-                <div>
-                    <h3>Edit Price</h3>
+                <div className="price-div">
+                    <h3>Price</h3>
                     <TextField
                         fullWidth
                         type="number"
