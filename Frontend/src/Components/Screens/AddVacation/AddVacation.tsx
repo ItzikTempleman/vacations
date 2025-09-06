@@ -93,7 +93,9 @@ export function AddVacation() {
                     <input
                         type="file"
                         accept="image/*"
-                        {...register("image")}
+                        {...register("image", {
+                            required: "Image is required"
+                        })}
                         className="image-input" />
                 </div>
                 <Button className="add-btn"

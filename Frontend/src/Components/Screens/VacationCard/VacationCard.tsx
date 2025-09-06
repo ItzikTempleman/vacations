@@ -10,19 +10,26 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/Store";
 import { Button } from "@mui/material";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Role } from "../../../Models/user-model/Role";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
+
 type VacationProps = {
     vacation: VacationModel;
 }
 
 export function VacationCard({ vacation }: VacationProps) {
-    const userId = useSelector((state: AppState) => state.user.id);
+    const user = useSelector((state: AppState) => state.user);
     const vacationId = vacation.id;
     const navigate = useNavigate();
+    const isAdmin = !!user && user.roleId === Role.Admin;
 
     let key = "";
-    if (userId) {
-        key = `${userId}, ${vacationId}`
+    if (user.id) {
+        key = `${user.id}, ${vacationId}`
     }
 
 
@@ -31,6 +38,9 @@ export function VacationCard({ vacation }: VacationProps) {
 
     //manage toggling
     const [liked, setLiked] = useState<boolean>(false);
+
+
+
 
     useEffect(
         () => {
@@ -64,6 +74,20 @@ export function VacationCard({ vacation }: VacationProps) {
         };
     }
 
+    async function deleteVacation() {
+        try {
+            const areYouSure = confirm("Remove this vacation?")
+            if (!areYouSure) return
+            await vacationService.deleteVacation(vacationId)
+            notify.success("Vacation removed")
+            navigate("/home")
+        } catch (err: unknown) {
+            notify.error(err);
+        }
+    }
+
+
+    if (!vacation) return null;
 
     function formatDate(input: string): string {
         const date = new Date(input);
@@ -82,15 +106,37 @@ export function VacationCard({ vacation }: VacationProps) {
                 <img src={vacation.imageUrl} />
                 <div className="image-gradient" />
                 <p className="destination-title">{vacation.destination}</p>
+                                            {
+                    isAdmin && (
+                        <>
+                            <div className="edit-and-delete">
+                                <NavLink to={`/vacations/edit/${vacationId}`}>
+                                    <EditNoteIcon className="edit" />
+                                </NavLink>
+                                <NavLink to={"#"} onClick={() => deleteVacation()}>
+                                    <DeleteIcon className="delete" />
+                                </NavLink>
+                            </div>
+                        </>
+                    )
+                }
             </div>
+
             <div className="vacation-dates">
                 <CalendarMonthIcon className="calendar-icon" />
-                <span>{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
+                <span className="dates-text">{formatDate(vacation.departureDate)} - {formatDate(vacation.returnDate)}</span>
 
-                <div className="like-icon" onClick={toggleLike}>
-                    {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
-                </div>
-                <span>{likes}</span>
+                {
+                    !isAdmin && (
+                        <>
+                            <div className="like-icon" onClick={toggleLike}>
+                                {liked ? <FavoriteIcon /> : <FavoriteBorderTwoToneIcon />}
+                            </div>
+                            <span>{likes}</span>
+                        </>
+                    )
+                }
+
             </div>
 
             <div className="vacation-content">
@@ -99,15 +145,14 @@ export function VacationCard({ vacation }: VacationProps) {
                     <Button className="more-info-btn"
                         onClick={moveToInfo}
                         variant="contained">
-
                         More info
                         <ArrowForwardIosIcon />
                     </Button>
                 </div>
+
                 <div className="vacation-price">
                     <h2>{vacation.price}$</h2>
                 </div>
-
             </div>
         </div>
     );

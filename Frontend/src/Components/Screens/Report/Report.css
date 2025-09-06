@@ -1,0 +1,40 @@
+.Report {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.report-content {
+	display: flex;
+	width: 100%;
+	flex: 1;
+	align-items: center;
+	gap: 16px;
+}
+
+.likes {
+	width: 80px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.likes-text {
+	font-size: 11px;
+	text-align: center;
+}
+
+.likes svg {
+	color: rgb(255, 0, 115);
+}
+
+.graph {
+	flex: 1;
+	min-width: 0;
+	display: block;
+}
+
+.report-chart {
+	width: 100%;
+}

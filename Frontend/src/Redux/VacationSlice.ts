@@ -8,6 +8,10 @@ function initVacationReducer(_: VacationModel[], action: PayloadAction<VacationM
     return action.payload;
 }
 
+function getAllVacationsReducer(currentState: VacationModel[]): VacationModel[] {
+    return currentState;
+}
+
 function addVacationReducer(currentState: VacationModel[], action: PayloadAction<VacationModel>): VacationModel[] {
     return [...currentState, action.payload];
 }
@@ -22,6 +26,7 @@ function updateVacationReducer(currentState: VacationModel[], action: PayloadAct
     newState[indexToUpdate] = vacationToUpdate;
     return newState;
 }
+
 
 function deleteVacationReducer(currentState: VacationModel[], action: PayloadAction<number>): VacationModel[] {
     const newState = [...currentState];
@@ -39,6 +44,7 @@ export const vacationSlice = createSlice(
         initialState: initialVacation,
         reducers: {
             initVacations: initVacationReducer,
+            getAllVacations:getAllVacationsReducer,
             addVacation: addVacationReducer,
             updateVacation: updateVacationReducer,
             deleteVacation: deleteVacationReducer,
@@ -47,5 +53,5 @@ export const vacationSlice = createSlice(
     }
 );
 
-export const { initVacations, addVacation, updateVacation, deleteVacation,clearVacations} = vacationSlice.actions;
+export const { initVacations,getAllVacations, addVacation, updateVacation, deleteVacation,clearVacations} = vacationSlice.actions;
 export const vacationReducer = vacationSlice.reducer;

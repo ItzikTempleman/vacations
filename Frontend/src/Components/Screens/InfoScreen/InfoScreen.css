@@ -1,5 +1,5 @@
 .InfoScreen {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   height: 100vh;
@@ -11,12 +11,12 @@
   margin-bottom: 30px;
 }
 
-.back-btn{
-  background: #0b79d0 !important;
+.back-btn {
+  background: #00d0ff !important;
   padding: 6px 12px !important;
 }
 
-.title{
+.title {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -25,63 +25,46 @@
   position: relative;
 }
 
-.title >h2{
-margin-left: 20px;
+.title>h2 {
+  margin-left: 20px;
+  color: #4d4d4d;
 }
 
-
-.edit{
-   margin: 4px;
-    border-radius: 360px;
-    background-color: rgb(213, 211, 211);
-}
-
-.delete{
-margin: 4px;
-    border-radius: 360px;
-    background-color: rgb(213, 211, 211);
-}
-
-.edit-and-delete a {
-  
-  color: #0b79d0;
-  text-decoration: none;
-}
-
-.edit-and-delete a:last-child {
-  color: #ff001e;
-}
 
 .main-container {
   position: relative;
-  width: 100%;
+  width: 60%;
+  height: auto;
   margin: 0 auto;
   box-shadow: 1px 2px black, 0 6px 18px black;
-  border-radius: 10px;
-  padding: 15px;
+  border-radius: 8px;
+  padding: 4px;
   box-sizing: border-box;
 }
 
 .image-div img {
-  border-radius: 8px;
+  border-radius: 4px;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
 }
 
 .dates {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-
+    position: absolute;
+ top: 0;
+  left: 10px;
+  color: white;
+  font-size: 18px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+  padding: 3px 6px;
+  border-radius: 4px;
+  text-shadow: 5px 5px 5px rgba(0,0,0,1);
 }
 
 .content {
   overflow-y: auto;
-  padding: 30px;
+ padding: 4px;
   width: 100%;
   margin: 20px 0;
   box-sizing: border-box;
@@ -91,15 +74,15 @@ margin: 4px;
   text-align: left;
   margin: 0;
   font-size: 16px;
-  line-height: 24px;     
-  color: #333;
-  max-height: calc(24px *10);
+  line-height: 24px;
+  color: #4d4d4d;
+
   overflow-y: auto;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
 }
 
-.price-container{
-  position: absolute;  
+.price-container {
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }

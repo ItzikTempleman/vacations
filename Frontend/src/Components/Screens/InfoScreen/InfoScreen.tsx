@@ -3,15 +3,11 @@ import { useTitle } from "../../../utils/UseTitle";
 import "./InfoScreen.css";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { VacationModel } from "../../../Models/VacationModel";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { vacationService } from "../../../Services/VacationService";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { notify } from "../../../utils/Notify";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../Redux/Store";
-import { Role } from "../../../Models/user-model/Role";
+
 
 export function InfoScreen() {
   useTitle("Info");
@@ -19,13 +15,15 @@ export function InfoScreen() {
   const vacationId = Number(params.id);
   const navigate = useNavigate();
   const [vacation, setVacation] = useState<VacationModel | null>(null);
-  const user = useSelector((s: AppState) => s.user);
-  const isAdmin = !!user && user.roleId === Role.Admin;
+
+
+
   useEffect(() => {
     if (!vacationId) {
       navigate("/home");
       return;
     };
+
     vacationService.getOneVacation(vacationId)
       .then(dbVacation => setVacation(dbVacation))
       .catch(err => notify.error(err));
@@ -44,17 +42,8 @@ export function InfoScreen() {
     navigate("/home");
   }
 
-  async function deleteVacation() {
-    try {
-      const areYouSure = confirm("Remove this vacation?")
-      if (!areYouSure) return
-      await vacationService.deleteVacation(vacationId)
-      notify.success("Vacation removed")
-      navigate("/home")
-    } catch (err: unknown) {
-      notify.error(err);
-    }
-  }
+
+
   if (!vacation) return null;
 
   return (
@@ -81,18 +70,6 @@ export function InfoScreen() {
           <h2 className="price-container">
             {vacation.price} $
           </h2>
-          {
-            isAdmin && (
-              <div className="edit-and-delete">
-                <NavLink to={`/vacations/edit/${vacationId}`}>
-                  <EditNoteIcon className="edit" fontSize="large" />
-                </NavLink>
-                <NavLink to={"#"} onClick={() => deleteVacation()}>
-                  <DeleteIcon className="delete" fontSize="large" />
-                </NavLink>
-              </div>
-            )
-          }
         </div>
         <div className="content"><p>{vacation.description}</p></div>
 

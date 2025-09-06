@@ -5,10 +5,9 @@
   gap: 6px;
   box-sizing: border-box;
   align-items: center;
-
   white-space: nowrap;
   height: 100%;
-   background: linear-gradient(270deg, #c4effe, #feebd8, #c4effe);
+  background: linear-gradient(270deg, #ffffff, rgb(195, 231, 171), #ffffff);
 }
 
 .header-brand {
@@ -22,7 +21,7 @@
   margin: 0 24px 0 0;
   font-size: 28px;
   letter-spacing: 0.4px;
-  background: linear-gradient(180deg, #0093c4 0%, #0083b0 60%, #06698a 100%);
+  background: linear-gradient(180deg, #00d0ff 0%, #0083b0 60%, #00d0ff 100%);
   background-clip: text;
   color: transparent;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
@@ -34,10 +33,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
 }
+
 .left-link {
-  color:  #d88902; 
+  color:  #00d0ff; 
   font-weight: 800;
   font-size: 12px;
   text-decoration: none;
@@ -46,17 +45,16 @@
 }
 
 .left-link svg {
-  color:  #d88902;
+  color:  #00d0ff;
   width: 32px;
   height: 32px;
-   transition: transform 0.2s, color 0.2s;
+  transition: transform 0.2s, color 0.2s;
 }
 
 .left-link:hover, .left-link svg:hover {
-   color: #d88902;
+  color: #00d0ff;
   transform: scale(1.1);
 }
-
 
 .header-user {
   display: flex;
@@ -73,7 +71,7 @@
   font-size: 18px;
 }
 .header-user-name svg{
-   color: #d88902;
+   color: #00d0ff;
     width: 32px;
   height: 32px;
 }
@@ -87,10 +85,16 @@
 }
 
 .header-role-admin {
-  background: #d88902;
+ background: linear-gradient(45deg,#FFD700, #fdb124, #FFEC8B );
   color: white;
 }
 
+.chart-div, .chart-div svg, .chart-div:hover, .chart-div svg:hover{
+  color:  #26be08; 
+}
+.csv-div, .csv-div svg, .csv-div:hover, .csv-div svg:hover{
+  color:  #00d0ff; 
+}
 
 .login-logout-container,
 .header-logout {
@@ -98,7 +102,6 @@
   align-items: center;
   gap: 8px;
   padding: 6px 10px;
-
   background: transparent;
   color: #0083b0;
   font-weight: 700;
@@ -110,7 +113,7 @@
 
 .login-logout-container:hover,
 .header-logout:hover {
-  color: #0083b0;
+  color: #00d0ff;
   transform: scale(1.1);
 }
 
@@ -118,5 +121,5 @@
 .header-logout svg {
   width: 32px;
   height: 32px;
-  color: #0083b0;
+  color: #00d0ff;
 }

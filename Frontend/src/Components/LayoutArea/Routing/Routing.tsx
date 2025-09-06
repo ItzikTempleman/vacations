@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-
 import { Page404 } from "../../Screens/Page404/Page404";
 import { RegisterUser } from "../../Screens/RegisterUser/RegisterUser";
 import { LoginScreen } from "../../Screens/LoginScreen/LoginScreen";
@@ -7,11 +6,9 @@ import { Home } from "../../Screens/Home/Home";
 import { AddVacation } from "../../Screens/AddVacation/AddVacation";
 import { InfoScreen } from "../../Screens/InfoScreen/InfoScreen";
 import { EditVacation } from "../../Screens/EditVacation/EditVacation";
-
-
+import { Report } from "../../Screens/Report/Report";
 
 export function Routing() {
-
     return (
         <div>
             <Routes>
@@ -20,9 +17,10 @@ export function Routing() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/register" element={<RegisterUser />} />
                 <Route path="/login" element={<LoginScreen />} />
-                <Route path="/add-vacation" element={<AddVacation/>} />
-                <Route path="/vacations/:id" element={<InfoScreen />} /> 
-                <Route path="/vacations/edit/:id" element={<EditVacation/>} />
+                <Route path="/add-vacation" element={<AddVacation />} />
+                <Route path="/vacations/:id" element={<InfoScreen />} />
+                <Route path="/vacations/edit/:id" element={<EditVacation />} />
+                <Route path="/report" element={<Report />} />
             </Routes>
         </div>
     );

@@ -10,7 +10,6 @@ import { notify } from "../../../utils/Notify";
 import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
 
 function formatDate(datetimeLocal: string): string {
-    // "YYYY-MM-DDTHH:MM" -> "YYYY-MM-DD HH:MM"
     return datetimeLocal ? datetimeLocal.replace("T", " ").slice(0, 16) : "";
 }
 
@@ -56,7 +55,7 @@ export function EditVacation() {
             await vacationService.updateVacation(vacation);
             notify.success("Vacation updated");
             navigate("/home/");
-        } catch (err: unknown) {
+        } catch (err: any) {
             notify.error(err);
         }
     }
@@ -78,7 +77,7 @@ export function EditVacation() {
                     <TextField
 
                         className="input-field-desc"
-                             multiline
+                        multiline
                         minRows={6}
                         maxRows={6}
                         sx={{
@@ -88,7 +87,7 @@ export function EditVacation() {
                         }}
                         fullWidth
                         {...register("description")}
- />
+                    />
                 </div>
 
                 <div className="edit-input-field">
@@ -131,7 +130,9 @@ export function EditVacation() {
                     <input
                         type="file"
                         accept="image/*"
-                        {...register("image")}
+                        {...register("image", {
+                            required: "Image is required"
+                        })}
                         className="image-input"
                         onChange={onPick}
                     />

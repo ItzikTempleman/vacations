@@ -104,6 +104,7 @@ class VacationService {
       }[];
       return totalLikes.length > 0 ? totalLikes[0].likescount : 0;
     };
+
 };
 
 export const vacationService = new VacationService();

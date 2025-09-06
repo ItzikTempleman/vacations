@@ -1,16 +1,41 @@
 .VacationCard {
   width: 250px;
-  box-shadow: 0 2px 6px grey;
+  box-shadow: 0 2px 6px rgb(93, 93, 93);
   margin: 10px;
-  background-color: white;
-  border-radius:8px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 500px;
   cursor: pointer;
-  
 }
+
+.VacationCard:hover {
+  transition: transform 0.2s, color 0.2s;
+  transform: scale(1.05);
+}
+
+
+.edit-and-delete {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  color: white;
+  background: rgba(0, 0, 0, 0.282);
+  backdrop-filter: blur(2px);
+  padding: 3px;
+  border-radius: 4px;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+}
+
+.edit-and-delete svg {
+  color: #00d9ff;
+}
+
+.edit-and-delete :last-child  svg{
+  color: white;
+} 
 
 .image-container {
   position: relative;
@@ -20,6 +45,7 @@
 .vacation-content {
   display: flex;
   flex-direction: column;
+
   flex: 1;
   min-height: 0;
 }
@@ -29,10 +55,11 @@
   min-height: 0;
   overflow-y: auto;
   padding: 12px;
+  overflow-y: auto;
 }
 
 .vacation-price {
-  margin-top: auto; 
+  margin-top: auto;
   text-align: right;
   font-weight: bold;
   padding: 6px;
@@ -41,13 +68,13 @@
 .vacation-dates {
   display: flex;
   margin: 1px;
-  align-items: center;   
-  gap: 1px;             
+  align-items: center;
+  gap: 1px;
   padding: 1px;
 }
 
 .calendar-icon {
-  font-size: 20px;      
+  font-size: 20px;
 }
 
 .image-container img {
@@ -59,29 +86,43 @@
 .destination-title {
   position: absolute;
   left: 6px;
-  bottom: -10px !important;
+  bottom: 0;
   color: white;
   font-size: 18px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(2px);
   padding: 3px 6px;
   border-radius: 4px;
-  text-shadow: 5px 5px 5px rgba(0,0,0,1);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
 }
 
 .like-icon {
- margin-left: auto;  
+  margin-left: auto;
   display: flex;
 }
 
-.like-icon >*{
-color: rgb(255, 0, 115);
-cursor: pointer;
+.like-icon>* {
+  color: rgb(255, 0, 115);
+  cursor: pointer;
 }
 
-.more-info-btn{
+.more-info-btn {
   align-self: center;
   width: 80%;
-  background-color: #0083b0 !important;
+  background-color: #00d0ff !important;
   color: white !important;
 }
+
+
+.vacation-price h2 {
+   color: #4d4d4d;
+  font-size: 24px;
+  width: 80%;
+  padding: 6px;
+  margin: 12px auto;
+
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+}
+
