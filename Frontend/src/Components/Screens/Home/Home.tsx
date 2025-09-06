@@ -18,14 +18,18 @@ export function Home() {
     }, []);
 
     return (
-        <div className="Home">
-            
+        <div className={`Home ${user ? "logged-in" : "logged-out"}`}>
+            {user && (
             <div className="home-header">
-                <h2>Listed vacations</h2>
+                {
+                   vacations? <h2>Listed vacations</h2>: <h2>No vacations</h2>
+                }
             </div>
-
+             )
+            }
+            
             {!user && (
-                <div className="no-vacations-text">
+                <div className="login-text">
                     <h2>You must log in to view vacation offerings</h2>
                 </div>
             )}

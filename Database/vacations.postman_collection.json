@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "c03f444c-bd68-4574-bbee-69be37fdea11",
+		"name": "vacations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14251384"
+	},
+	"item": [
+		{
+			"name": "get images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/images/b5e5f46c-cd25-4241-88d8-54a098bc0799.jpeg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"images",
+						"b5e5f46c-cd25-4241-88d8-54a098bc0799.jpeg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get vacations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MDY0OTU1LCJleHAiOjE3NTcwNzU3NTV9.p-v_DVDf0PfADOwkJn0MV3hWy0k-xa054_bc8faXjKc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMCwiZmlyc3ROYW1lIjoiTGFycnkgMiIsImZhbWlseU5hbWUiOiJEYW4iLCJlbWFpbCI6ImxhcnJ5ZGFuQGdtYWlsLmNvbTEiLCJyb2xlSWQiOjJ9LCJpYXQiOjE3NTU1ODE5NTEsImV4cCI6MTc1NTU5Mjc1MX0.jnXk3ClNZYaLJprv8wXgPjMCBpQqNgj4VzDlctRfXhs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\":\"Itzik 4\",\n    \"familyName\":\"Temp\",\n    \"email\":\"itzik.templeman23@gmail.com\",\n    \"password\":\"Rz64lp321\",\n    \"roleId\":\"User\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"nir_cohen@gmail.com\",\n    \"password\":\"Rz64lp321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxNiwiZmlyc3ROYW1lIjoiTGlhZCAiLCJmYW1pbHlOYW1lIjoiQ29oZW4iLCJlbWFpbCI6ImxpYWQxMjNkQHdhbGxhLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjIzNDE0MywiZXhwIjoxNzU2MjQ0OTQzfQ.MB-yWYsngqzdAcJgcuH5zV_Mm89Ey3yVJiJua_ModG0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "destination",
+							"value": "Dubai, UAE",
+							"type": "text"
+						},
+						{
+							"key": "departureDate",
+							"value": "2025-10-14 09:23:00",
+							"type": "text"
+						},
+						{
+							"key": "returnDate",
+							"value": "2025-10-24 11:11:00",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Dubai is a great city omn the persian golf ",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "4750",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/isaaktempleman/Downloads/Full Stock Web - John Bryce (116)/work/vacations/Backend/src/1-assets/images/2024-12-31T141745Z_244978656_RC2E0CAHN0XJ_RTRMADP_3_NEW-YEAR-DUBAI-FIREWORKS-1024x683.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/vacations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxNiwiZmlyc3ROYW1lIjoiTGlhZCAiLCJmYW1pbHlOYW1lIjoiQ29oZW4iLCJlbWFpbCI6ImxpYWQxMjNkQHdhbGxhLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjQ1MzUwMywiZXhwIjoxNzU2NDY0MzAzfQ.n-NpyIDz494sxb8xs9Q5sweM19SOuSkrTSbXKtURckE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/liked/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"liked",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unlike vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJJdHppayIsImZhbWlseU5hbWUiOiJUZW1wIiwiZW1haWwiOiJpdHppa0BnbWFpbC5jb20iLCJyb2xlSWQiOjJ9LCJpYXQiOjE3NTUzNDMyMzAsImV4cCI6MTc1NTM1NDAzMH0.UeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjQ4MDcyMiwiZXhwIjoxNzU2NDkxNTIyfQ.ZXgnzhOkOiZR-TiTwkiaTCdY88O5QNC9szN07vpHatUg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/liked/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"liked",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single vacation",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MDY0OTU1LCJleHAiOjE3NTcwNzU3NTV9.p-v_DVDf0PfADOwkJn0MV3hWy0k-xa054_bc8faXjKc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJmaXJzdE5hbWUiOiJJdHppayIsImZhbWlseU5hbWUiOiJUZW1wIDMiLCJlbWFpbCI6Iml0emlrQGdtYWlsdy5jb20iLCJyb2xlSWQiOjF9LCJpYXQiOjE3NTU0NDIzMDcsImV4cCI6MTc1NTQ1MzEwN30.ND02SBsXcebCeXkthRzgtswp_v6BFpgmTtPZbsexmQQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "destination",
+							"value": "Phucket, Thailand ",
+							"type": "text"
+						},
+						{
+							"key": "departureDate",
+							"value": "2025-11-01 09:23:00",
+							"type": "text"
+						},
+						{
+							"key": "returnDate",
+							"value": "2025-11-24 11:11:00",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Thailand is a real life paradaise. enjoy 23 days and go to the beach, diving, hiking in northern jungles and much much more. the noghtlife of the vibrant city of Bangkock will gice a boost of energy",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "9500",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/isaaktempleman/Downloads/Full Stock Web - John Bryce (116)/work/vacations/Backend/src/1-assets/images/images.jpeg"
+						},
+						{
+							"key": "id",
+							"value": " 5",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjQ4MTE5MSwiZXhwIjoxNzU2NDkxOTkxfQ.def5XneJGmLSqgAiYdBQ2ryaQQMFCsTkltwSpJyxqto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get number of likes per vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MDY0OTU1LCJleHAiOjE3NTcwNzU3NTV9.p-v_DVDf0PfADOwkJn0MV3hWy0k-xa054_bc8faXjKc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/liked/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"liked",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/users/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"24"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

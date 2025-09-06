@@ -1,44 +1,78 @@
 .Home {
-  display: flex;
-  flex-direction: column;  
+  position: relative;
   min-height: 100vh;
-  width: 100%;
-background: linear-gradient(330deg, #5f5e5e 0%, #b1b1b1 60%, #ffffff 100%);
-  padding: 16px 32px;      
+  padding: 16px 32px;
   box-sizing: border-box;
+  background: #fff;    
+  overflow: hidden;
 }
+
+
+.Home::before,
+.Home::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  opacity: 1;           
+  transition: opacity .3s ease;
+}
+
+
+.Home.logged-in::before,
+.Home.logged-in::after {
+  opacity: 0.6;
+}
+
+.Home.logged-out::before,
+.Home.logged-out::after {
+  opacity: 1;
+}
+
+
+.Home::before {
+  background-image: url("/Assets/images/day.jpg");
+  background-position: 50% 20%;   
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 25%);
+}
+
+.Home::after {
+  background-image: url("/Assets/images/peakpx.jpg");
+  background-position: 50% 10%;   
+  clip-path: polygon(0 27%, 100% 57%, 100% 100%, 0 100%);
+}
+
+.home-header,
+.vacation-list,
+.login-text {
+  position: relative;
+  z-index: 1;
+}
+
 .home-header {
-  text-align: left;       
+  text-align: left;
   margin-bottom: 16px;
-  width: 100%; 
   margin-left: 50px;
-  order: 0;
 }
 
 .home-header h2 {
   margin: 0;
   font-weight: bold;
-   color: #7b7b7b ;             
+  color: #7b7b7b;
 }
 
-
 .vacation-list {
-  order: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   width: 100%;
 }
 
-.no-vacations-text {
-  display: flex;
-  height: 50vh;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-vacations-text>h2 {
-  color: #0083b0;
+.login-text > h2 {
+  margin-left: 50px;
+  text-align: left;
+  color: #7b7b7b;
 }

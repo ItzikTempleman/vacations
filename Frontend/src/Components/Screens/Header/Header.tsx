@@ -43,9 +43,9 @@ export function Header() {
       <div className="header-brand">
         <h3>Vacations</h3>
 
-        <NavLink to="/home" className="left-link">
+        <NavLink to="/home" className="left-link-home">
           <HomeOutlinedIcon />
-          <div className="left-link-text">Home</div>
+          <div className="left-link-home-text">Home</div>
         </NavLink>
 
         {isAdmin && (

@@ -7,6 +7,7 @@
   align-items: center;
   white-space: nowrap;
   height: 100%;
+  border-bottom: #7b7b7b solid 0.5px;
   background: linear-gradient(270deg, #ffffff, #ffffff, #ffffff);
 }
 
@@ -36,6 +37,7 @@
   gap: 8px;
 }
 
+
 .left-link {
   color:  #00d0ff; 
   font-weight: 800;
@@ -56,7 +58,25 @@
   color: #00d0ff;
   transform: scale(1.1);
 }
+.left-link-home {
+  color: #fdb124; 
+  text-decoration: none;
+  transition: transform 0.2s, color 0.2s;
+}
 
+.left-link-home:hover {
+  transform: scale(1.1);
+  color: #fdb124; 
+}
+.left-link-home svg{
+  width: 32px;
+  height: 32px;
+}
+
+.left-link-home-text {
+font-size: 12px;
+
+}
 .header-user {
   display: flex;
   align-items: center; 
@@ -67,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #4d4d4d;
+     color: #7b7b7b ;   
   font-weight: 800;
   font-size: 18px;
 }
