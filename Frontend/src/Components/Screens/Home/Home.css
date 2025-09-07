@@ -60,7 +60,7 @@
 .home-header h2 {
   margin: 0;
   font-weight: bold;
-  color: #7b7b7b;
+  color: #4d4d4d;
 }
 
 .vacation-list {
@@ -74,5 +74,5 @@
 .login-text > h2 {
   margin-left: 50px;
   text-align: left;
-  color: #7b7b7b;
+  color: #4d4d4d;
 }

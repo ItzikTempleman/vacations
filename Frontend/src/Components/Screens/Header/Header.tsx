@@ -65,7 +65,7 @@ export function Header() {
            <NavLink onClick={() => downloadLikesCsv(vacations, likes)} to=" " className="left-link">
               <div className="csv-div" >
                 <ArrowDownwardIcon />
-                <div className="csv-div-text">CSV</div>
+                <div className="csv-div-text">Download Report</div>
               </div>
             </NavLink>
           </>
