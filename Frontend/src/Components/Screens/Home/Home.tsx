@@ -11,11 +11,10 @@ import ReactPaginate from "react-paginate";
 export function Home() {
     useTitle("Home");
     const user = useSelector((state: AppState) => state.user);
-
     const vacations = useSelector((state: AppState) => state.vacation);
-   
-
     const [currentPage, setCurrentPage] = useState(0);
+
+    const [heading, setHeading] = useState("");
 
     useEffect(() => {
         vacationService.getAllVacations();
@@ -33,10 +32,9 @@ export function Home() {
     return (
         <div className={`Home ${user ? "logged-in" : "logged-out"}`}>
             {user && (
-
                 <div className="home-header">
                     {
-                        vacations ? <h2>Listed vacations</h2> : <h2>No vacations</h2>
+                        vacations ? <h2>{heading}</h2> : <h2>No vacations</h2>
                     }
                 </div>
             )

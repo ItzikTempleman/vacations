@@ -3,10 +3,10 @@ import { VacationModel } from "../Models/VacationModel";
 
 const initialVacation: VacationModel[] = [];
 
-
 function initVacationReducer(_: VacationModel[], action: PayloadAction<VacationModel[]>) {
     return action.payload;
 }
+
 
 function getAllVacationsReducer(currentState: VacationModel[]): VacationModel[] {
     return currentState;
@@ -45,8 +45,8 @@ export const vacationSlice = createSlice(
         initialState: initialVacation,
         reducers: {
             initVacations: initVacationReducer,
+        
             getAllVacations: getAllVacationsReducer,
-       
             addVacation: addVacationReducer,
             updateVacation: updateVacationReducer,
             deleteVacation: deleteVacationReducer,
@@ -55,5 +55,5 @@ export const vacationSlice = createSlice(
     }
 );
 
-export const { initVacations, getAllVacations, addVacation, updateVacation, deleteVacation, clearVacations } = vacationSlice.actions;
+export const { initVacations,getAllVacations, addVacation, updateVacation, deleteVacation, clearVacations } = vacationSlice.actions;
 export const vacationReducer = vacationSlice.reducer;

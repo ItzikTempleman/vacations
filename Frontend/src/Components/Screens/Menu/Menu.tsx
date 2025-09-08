@@ -5,11 +5,13 @@ import { filterArray, Filters } from "../../../Models/Filters";
 import { notify } from "../../../utils/Notify";
 import { ChangeEvent } from "react";
 import { vacationService } from "../../../Services/VacationService";
+import { store } from "../../../Redux/Store";
+import { initVacations } from "../../../Redux/VacationSlice";
 export function Menu() {
 
     async function filterOption(e: ChangeEvent<HTMLSelectElement>) {
-        try {
 
+        try {
             const filter = Number(e.target.value) as Filters;
             let data;
 
@@ -27,9 +29,11 @@ export function Menu() {
                     break;
 
                 case Filters.ALL:
-                    data = await vacationService.getAllVacations();
-                    break;
+                default:
+                    await vacationService.getAllVacations();
+                    return;
             }
+            store.dispatch(initVacations(data));
         } catch (err: any) {
             notify.error(err);
         }
@@ -39,19 +43,14 @@ export function Menu() {
         <div className="Menu">
             <span className="filter-section">
                 <TuneIcon />
-                <select className="select-filter"
-                    defaultValue=""
-                    onChange={() => {
-                        filterOption
-                    }
-                    } required><option value="" disabled>  Filter by</option>
+                <select className="select-filter"onChange={filterOption}>
                     {
-                        filterArray.map(({ value, label }) => (
+                      filterArray.map(({value,label}) => (
                             <option key={value} value={value}>
                                 {label}
                             </option>
-                        )
-                        )
+                         )
+                      )
                     }
                 </select>
             </span>
