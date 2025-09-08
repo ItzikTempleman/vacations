@@ -34,7 +34,6 @@ class VacationService {
                 "Content-Type": "multipart/form-data"
             }
         };
-
     }
 
     public async getAllVacations(): Promise<VacationModel[]> {
@@ -43,6 +42,28 @@ class VacationService {
         store.dispatch(initVacations(vacations));
         return vacations;
     };
+
+    public async getLikedVacations(): Promise<VacationModel[]> {
+        const response = await axios.get<VacationModel[]>(appConfig.getLikedVacationsUrl, this.getAuth());
+        const vacations = response.data;
+
+        return vacations;
+    };
+
+    public async getActiveVacations(): Promise<VacationModel[]> {
+        const response = await axios.get<VacationModel[]>(appConfig.getActiveVacationsUrl, this.getAuth());
+        const vacations = response.data;
+
+        return vacations;
+    };
+
+    public async getFutureVacations(): Promise<VacationModel[]> {
+        const response = await axios.get<VacationModel[]>(appConfig.getFutureVacationsUrl, this.getAuth());
+        const vacations = response.data;
+       
+        return vacations;
+    };
+
 
     public async getLikesCount(vacationId: number): Promise<number> {
         const response = await axios.get<number>(`${appConfig.likeUrl}${vacationId}`, this.getAuth());
@@ -74,7 +95,7 @@ class VacationService {
 
     public async deleteVacation(vacationId: number): Promise<void> {
         await axios.delete(appConfig.vacationsUrl + vacationId, this.getAuth());
-      
+
 
         store.dispatch(deleteVacation(vacationId));
         store.dispatch(initVacations())

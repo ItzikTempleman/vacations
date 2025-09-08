@@ -14,7 +14,7 @@ export const filterArray: FilterWrapper[] = [
     label: "All vacations",
   },
   {
-    value: Filters.ALL,
+    value: Filters.LIKED,
     label: "Liked vacations",
   },
   {

@@ -15,7 +15,7 @@ class VacationService {
     };
 
     public async getLikedVacations(): Promise<VacationModel[]> {
-        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable join likes l on vacationstable.id = l.vacationid order by departureDate asc";
+        const sql = "select distinct vacationstable.*, concat(?,imageName) as imageUrl from vacationstable join likes l on vacationstable.id = l.vacationid order by departureDate asc";
         const values = [appConfig.baseImageUrl];
         const vacations = await dal.execute(sql, values) as VacationModel[];
         return vacations;

@@ -7,12 +7,6 @@ import { Role } from "../3-models/role";
 import { UserModel } from "../3-models/user-model";
 
 class UserService {
-
-
-
-
-
-    
     public async register(user: UserModel): Promise<string> {
         const taken = await this.isEmailTaken(user.email);
         if (taken) throw new ValidationError("Email already exists");
@@ -23,7 +17,6 @@ class UserService {
         const info: OkPacketParams = await dal.execute(sql, values) as OkPacketParams;
         user.id = info.insertId!;
         return cyber.generateToken(user);
-
     }
 
     public async login(credentials: CredentialsModel): Promise<string> {
