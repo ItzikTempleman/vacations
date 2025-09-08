@@ -16,21 +16,18 @@ export function InfoScreen() {
   const vacationId = Number(params.id);
   const navigate = useNavigate();
   const [vacation, setVacation] = useState<VacationModel | null>(null);
+const [imgSrc, setImgSrc] = useState<string>("");
 
-//const [imgSrc, setImgSrc] = useState<string>(vacation.imageUrl || appConfig.noImage);
   useEffect(() => {
+    if (!vacationId) { navigate("/home"); return; }
 
-
-    if (!vacationId) {
-      navigate("/home");
-      return;
-    };
-    // setImgSrc(vacation.imageUrl && vacation.imageUrl.trim() !== "" ? vacation.imageUrl : appConfig.noImage);
     vacationService.getOneVacation(vacationId)
-      .then(dbVacation => setVacation(dbVacation))
+      .then(dbVacation => {
+        setVacation(dbVacation);
+        setImgSrc(dbVacation.imageUrl?.trim() ? dbVacation.imageUrl : appConfig.noImage);
+      })
       .catch(err => notify.error(err));
-  }, [vacationId]
-  );
+  }, [vacationId, navigate]);;
 
   function formatDate(input: string): string {
     const date = new Date(input);
@@ -59,7 +56,12 @@ export function InfoScreen() {
       </div>
       <div className="main-container">
         <div className="image-div">
-          <img src={imgSrc} />
+                        <img src={imgSrc}
+                          loading="lazy"
+          onError={() => {
+            if (imgSrc !== appConfig.noImage) setImgSrc(appConfig.noImage); 
+          }}
+                />
         </div>
         <h2 className="dates">
           {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}

@@ -29,21 +29,29 @@ export function VacationCard({ vacation }: VacationProps) {
 
     let key = (user.id) ? `${user.id}, ${vacationId}` : ""
 
-const [imgSrc, setImgSrc] = useState<string>(vacation.imageUrl || appConfig.noImage);
+
     //reading likes count
     const [likes, setLikeState] = useState<number>(0);
 
     //manage toggling
+
     const [liked, setLiked] = useState<boolean>(false);
+
+
+const [imgSrc, setImgSrc] = useState<string>("");
 
     useEffect(
         () => {
-            setImgSrc(vacation.imageUrl && vacation.imageUrl.trim() !== "" ? vacation.imageUrl : appConfig.noImage);
+
+                setImgSrc(
+      vacation.imageUrl && vacation.imageUrl.trim() !== "" ? vacation.imageUrl : appConfig.noImage
+    );
+
             vacationService.getLikesCount(vacation.id)
                 .then((count) => setLikeState(count ?? 0))
                 .catch(() => setLikeState(0));
             setLiked(!!(key && localStorage.getItem(key)))
-        }, [vacation.id, vacation.imageUrl]
+        }, [vacation.id,vacation.imageUrl, key]
     );
 
     async function moveToInfo(): Promise<void> {
@@ -94,7 +102,12 @@ const [imgSrc, setImgSrc] = useState<string>(vacation.imageUrl || appConfig.noIm
         <div className="VacationCard">
 
             <div className="image-container">
-                <img src={imgSrc} />
+                <img src={imgSrc}
+                          loading="lazy"
+          onError={() => {
+            if (imgSrc !== appConfig.noImage) setImgSrc(appConfig.noImage); 
+          }}
+                />
                 <div className="image-gradient" />
                 <p className="destination-title">{vacation.destination}</p>
                 {
