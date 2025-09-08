@@ -119,6 +119,14 @@ export function EditVacation() {
                     <TextField
                         fullWidth
                         type="number"
+                        helperText={"Price must be between 0 and 10000"}
+                        placeholder="Price $"
+                        InputProps={{
+                            inputProps: {
+                                min: 0,
+                                max: 10000
+                            }
+                        }}
                         {...register("price")} />
                 </div>
 

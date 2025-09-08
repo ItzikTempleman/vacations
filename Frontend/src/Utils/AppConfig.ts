@@ -11,6 +11,8 @@ class AppConfig {
     public readonly loginUrl = "http://localhost:4000/api/login/";
     public readonly usersUrl = "http://localhost:4000/api/users/";
 
+    
+    public noImage = "/Assets/images/No_Image_Available.jpg";
 }
 
 export const appConfig = new AppConfig();

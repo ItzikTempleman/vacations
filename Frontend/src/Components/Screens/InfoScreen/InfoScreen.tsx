@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../utils/Notify";
+import { appConfig } from "../../../utils/AppConfig";
 
 
 export function InfoScreen() {
@@ -16,14 +17,15 @@ export function InfoScreen() {
   const navigate = useNavigate();
   const [vacation, setVacation] = useState<VacationModel | null>(null);
 
-
-
+//const [imgSrc, setImgSrc] = useState<string>(vacation.imageUrl || appConfig.noImage);
   useEffect(() => {
+
+
     if (!vacationId) {
       navigate("/home");
       return;
     };
-
+    // setImgSrc(vacation.imageUrl && vacation.imageUrl.trim() !== "" ? vacation.imageUrl : appConfig.noImage);
     vacationService.getOneVacation(vacationId)
       .then(dbVacation => setVacation(dbVacation))
       .catch(err => notify.error(err));
@@ -57,7 +59,7 @@ export function InfoScreen() {
       </div>
       <div className="main-container">
         <div className="image-div">
-          <img src={vacation.imageUrl} />
+          <img src={imgSrc} />
         </div>
         <h2 className="dates">
           {formatDate(vacation.departureDate)} — {formatDate(vacation.returnDate)}

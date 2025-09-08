@@ -98,7 +98,14 @@ export function AddVacation() {
                         fullWidth
                         type="number"
                         label="Price $"
+                        helperText={"Price must be between 0 and 10000"}
                         placeholder="Price $"
+                        InputProps={{
+                            inputProps: {
+                                min: 0,
+                                max: 10000
+                            }
+                        }}
                         {...register("price")} />
                 </div>
 
@@ -107,7 +114,7 @@ export function AddVacation() {
                     <input
                         type="file"
                         accept="image/*"
-                  {...register("image", { required: false })}
+                        {...register("image", { required: false })}
                         className="image-input" />
                 </div>
                 <Button className="add-btn"

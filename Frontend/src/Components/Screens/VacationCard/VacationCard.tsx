@@ -13,6 +13,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Role } from "../../../Models/user-model/Role";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { appConfig } from "../../../utils/AppConfig";
 
 
 
@@ -28,7 +29,7 @@ export function VacationCard({ vacation }: VacationProps) {
 
     let key = (user.id) ? `${user.id}, ${vacationId}` : ""
 
-
+const [imgSrc, setImgSrc] = useState<string>(vacation.imageUrl || appConfig.noImage);
     //reading likes count
     const [likes, setLikeState] = useState<number>(0);
 
@@ -37,11 +38,12 @@ export function VacationCard({ vacation }: VacationProps) {
 
     useEffect(
         () => {
+            setImgSrc(vacation.imageUrl && vacation.imageUrl.trim() !== "" ? vacation.imageUrl : appConfig.noImage);
             vacationService.getLikesCount(vacation.id)
                 .then((count) => setLikeState(count ?? 0))
                 .catch(() => setLikeState(0));
             setLiked(!!(key && localStorage.getItem(key)))
-        }, [vacation.id]
+        }, [vacation.id, vacation.imageUrl]
     );
 
     async function moveToInfo(): Promise<void> {
@@ -92,7 +94,7 @@ export function VacationCard({ vacation }: VacationProps) {
         <div className="VacationCard">
 
             <div className="image-container">
-                <img src={vacation.imageUrl} />
+                <img src={imgSrc} />
                 <div className="image-gradient" />
                 <p className="destination-title">{vacation.destination}</p>
                 {
