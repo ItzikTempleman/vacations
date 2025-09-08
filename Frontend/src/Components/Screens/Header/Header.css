@@ -1,4 +1,6 @@
 .Header {
+    container-type: inline-size;
+  min-width: 0;  
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -122,11 +124,11 @@ font-size: 12px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
+  padding: 6px 24px;
   background: transparent;
  color: red;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.2s, color 0.2s;
@@ -143,4 +145,12 @@ font-size: 12px;
   width: 32px;
   height: 32px;
   color: red;
+}
+
+
+
+@media screen and (max-width: 930px) {
+ .header-user {
+    display: none !important;
+  }
 }
