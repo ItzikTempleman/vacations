@@ -1,23 +1,34 @@
+import { useSelector } from "react-redux";
 import { Copyrights } from "../../Screens/Copyrights/Copyrights";
 import { Header } from "../../Screens/Header/Header";
 import { Menu } from "../../Screens/Menu/Menu";
 import { Routing } from "../Routing/Routing";
 import "./MainLayout.css";
+import { AppState } from "../../../Redux/Store";
+
+
 
 export function MainLayout() {
+     const user = useSelector((state: AppState) => state.user);
+
     return (
-        <div className="MainLayout">
+       <div className={`MainLayout ${user ? "with-aside" : "no-aside"}`}>
             <header>
-                <Header/>
+                <Header />
             </header>
-            <aside>
-                <Menu/>
-            </aside>
+
+            {
+            user && ( 
+                <aside>
+                    <Menu />
+                </aside>
+          )
+   }
             <main>
-                <Routing/>
+                <Routing />
             </main>
             <footer>
-                <Copyrights/>
+                <Copyrights />
             </footer>
         </div>
     );

@@ -3,7 +3,7 @@
     box-sizing: border-box;
     display: grid;
       grid-template-rows: 10% 86% 4%;
-   grid-template-columns: minmax(160px, 12%) minmax(0, 1fr);
+   grid-template-columns: 1fr;
 }
 
 .MainLayout > * {
@@ -32,4 +32,11 @@ footer{
     min-width: 0;
 }
 
+.MainLayout.with-aside {
+  grid-template-columns: minmax(160px, 12%) minmax(0, 1fr);
+}
+
+.MainLayout.with-aside main {
+  grid-column: 2 / -1;
+}
 

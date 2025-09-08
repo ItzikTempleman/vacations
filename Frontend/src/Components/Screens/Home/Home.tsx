@@ -14,13 +14,19 @@ export function Home() {
     const vacations = useSelector((state: AppState) => state.vacation);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const [heading, setHeading] = useState("");
+    const [heading, setHeading] = useState(localStorage.getItem("filterName") ?? "All vacations");
 
-    useEffect(() => {
-        vacationService.getAllVacations();
-    }, []
-    );
 
+useEffect(() => {
+  vacationService.getAllVacations();
+}, []);
+
+// refresh heading whenever the list changes
+useEffect(() => {
+  const saved = localStorage.getItem("filterName") ?? "All vacations";
+  setHeading(saved);
+  setCurrentPage(0);
+}, [vacations]);
     if (!vacations) return null;
 
     //Math.ceil rounds it upwards
@@ -32,6 +38,7 @@ export function Home() {
     return (
         <div className={`Home ${user ? "logged-in" : "logged-out"}`}>
             {user && (
+
                 <div className="home-header">
                     {
                         vacations ? <h2>{heading}</h2> : <h2>No vacations</h2>

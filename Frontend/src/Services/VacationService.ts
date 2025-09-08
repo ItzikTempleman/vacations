@@ -46,21 +46,21 @@ class VacationService {
     public async getLikedVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appConfig.getLikedVacationsUrl, this.getAuth());
         const vacations = response.data;
-
+  store.dispatch(initVacations(vacations));
         return vacations;
     };
 
     public async getActiveVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appConfig.getActiveVacationsUrl, this.getAuth());
         const vacations = response.data;
-
+         store.dispatch(initVacations(vacations));
         return vacations;
     };
 
     public async getFutureVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appConfig.getFutureVacationsUrl, this.getAuth());
         const vacations = response.data;
-       
+        store.dispatch(initVacations(vacations));
         return vacations;
     };
 
