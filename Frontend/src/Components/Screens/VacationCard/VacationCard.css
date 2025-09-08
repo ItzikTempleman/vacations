@@ -24,17 +24,17 @@
   color: white;
   background: rgba(0, 0, 0, 0.282);
   backdrop-filter: blur(2px);
-  padding: 2px;
-  border-radius: 20px;
+  padding: 0 5px;
+  border-radius: 4px;
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
 }
 
 .edit-and-delete svg {
-  color: #26be08;
+  color: #ffe600;
 }
 
 .edit-and-delete :last-child  svg{
-  color: rgb(225, 102, 102);
+  color: rgb(227, 46, 46);
 } 
 
 .image-container {

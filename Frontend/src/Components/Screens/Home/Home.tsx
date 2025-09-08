@@ -5,6 +5,7 @@ import { vacationService } from "../../../Services/VacationService";
 import { VacationCard } from "../VacationCard/VacationCard";
 import "./Home.css";
 import { useTitle } from "../../../utils/UseTitle";
+import { homeParagraph } from "../../../utils/HomeParagraph";
 
 export function Home() {
     useTitle("Home");
@@ -20,18 +21,33 @@ export function Home() {
     return (
         <div className={`Home ${user ? "logged-in" : "logged-out"}`}>
             {user && (
-            <div className="home-header">
-                {
-                   vacations? <h2>Listed vacations</h2>: <h2>No vacations</h2>
-                }
-            </div>
-             )
-            }
-            
-            {!user && (
-                <div className="login-text">
-                    <h2>You must log in to view vacation offerings</h2>
+
+                <div className="home-header">
+                    {
+                        vacations ? <h2>Listed vacations</h2> : <h2>No vacations</h2>
+                    }
+
+
                 </div>
+
+            )
+            }
+
+            {!user && (
+                <>
+                    <div className="login-text">
+                        <h2>You must log in to view vacation offerings</h2>
+                    </div>
+                    <div >
+    <p className="home-description">
+  <strong className="home-intro">
+    Welcome to my vacation website, your starting point for discovering unforgettable journeys.
+  </strong>
+  <br className="tight-break" />
+  {homeParagraph.vacationDescription()}
+</p>
+                    </div>
+                </>
             )}
 
             <div className="vacation-list">

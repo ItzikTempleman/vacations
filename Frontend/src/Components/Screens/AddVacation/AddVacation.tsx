@@ -9,11 +9,18 @@ import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+
+
 export function AddVacation() {
     useTitle("Add vacation");
     const navigate = useNavigate();
     const { register, handleSubmit, getValues } = useForm<VacationModel>();
 
+    function returnToHome() {
+        navigate("/home");
+    }
 
     async function send(vacation: VacationModel): Promise<void> {
         vacation.image = (vacation.image as unknown as FileList)[0];
@@ -32,6 +39,12 @@ export function AddVacation() {
 
     return (
         <div className="AddVacation">
+
+            <Button className="back-btn-from-add-vacation" variant="contained" onClick={returnToHome}>
+                <ArrowBackIosIcon />
+                Back
+            </Button>
+
             <form onSubmit={handleSubmit(send)} className="add-vacation-form">
                 <h2 className="add-vacation-title">Add a new vacation</h2>
                 <div className="input-field">
