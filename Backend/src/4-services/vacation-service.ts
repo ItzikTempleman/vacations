@@ -14,6 +14,28 @@ class VacationService {
         return vacations;
     };
 
+    public async getLikedVacations(): Promise<VacationModel[]> {
+        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable join likes l on vacationstable.id = l.vacationid order by departureDate asc";
+        const values = [appConfig.baseImageUrl];
+        const vacations = await dal.execute(sql, values) as VacationModel[];
+        return vacations;
+    };
+
+
+    public async getActiveVacations(): Promise<VacationModel[]> {
+        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable where departureDate <= now() and returnDate >= now() order by departuredate asc"
+        const values = [appConfig.baseImageUrl];
+        const vacations = await dal.execute(sql, values) as VacationModel[];
+        return vacations;
+    };
+
+    public async getFutureVacations(): Promise<VacationModel[]> {
+        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable where departureDate >= now() order by departuredate asc";
+        const values = [appConfig.baseImageUrl];
+        const vacations = await dal.execute(sql, values) as VacationModel[];
+        return vacations;
+    };
+
     public async getOneVacation(id: number): Promise<VacationModel> {
         const sql = `select * , concat(?,imageName) as imageUrl from vacationstable where id = ?`;
         const values = [appConfig.baseImageUrl, id];
@@ -97,12 +119,12 @@ class VacationService {
     }
 
     public async getVacationTotalLikedCount(vacationId: number): Promise<number> {
-      const sql="select count(*) as likescount from likes where vacationId=?";
-      const values =[vacationId];
-      const totalLikes= await dal.execute(sql,values) as {
-        likescount:number
-      }[];
-      return totalLikes.length > 0 ? totalLikes[0].likescount : 0;
+        const sql = "select count(*) as likescount from likes where vacationId=?";
+        const values = [vacationId];
+        const totalLikes = await dal.execute(sql, values) as {
+            likescount: number
+        }[];
+        return totalLikes.length > 0 ? totalLikes[0].likescount : 0;
     };
 
 };

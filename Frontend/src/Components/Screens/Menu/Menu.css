@@ -3,13 +3,11 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-
 }
 
-.filter-section{
-    margin: 12px;
-display: flex;
+.filter-section {
+    display: flex;
     align-items: center;
 }

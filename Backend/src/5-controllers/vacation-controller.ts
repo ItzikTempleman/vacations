@@ -10,11 +10,16 @@ class VacationController {
     public readonly router = express.Router();
 
     public constructor() {
-        this.router.get("/vacations", verificationMiddleware.verifyLoggedIn, this.getAllVacations);
+        this.router.get("/vacations/sorted/all", verificationMiddleware.verifyLoggedIn, this.getAllVacations);
+        this.router.get("/vacations/sorted/liked", verificationMiddleware.verifyLoggedIn, this.getLikedVacations);
+        this.router.get("/vacations/sorted/active", verificationMiddleware.verifyLoggedIn, this.getActiveVacations);
+        this.router.get("/vacations/sorted/future", verificationMiddleware.verifyLoggedIn, this.getFutureVacations);
+
+
         this.router.get("/vacations/:id", verificationMiddleware.verifyLoggedIn, this.getOneVacation);
 
-        this.router.post("/vacations", verificationMiddleware.verifyIsAdmin,this.addVacation);
-        this.router.put("/vacations/:id",verificationMiddleware.verifyIsAdmin, this.updateVacation);
+        this.router.post("/vacations", verificationMiddleware.verifyIsAdmin, this.addVacation);
+        this.router.put("/vacations/:id", verificationMiddleware.verifyIsAdmin, this.updateVacation);
         this.router.delete("/vacations/:id", verificationMiddleware.verifyIsAdmin, this.deleteVacation);
         this.router.get("/vacations/images/:imageName", this.getImage);
 
@@ -34,7 +39,20 @@ class VacationController {
         const vacations = await vacationService.getAllVacations();
         response.json(vacations);
     }
+    public async getLikedVacations(request: Request, response: Response) {
+        const vacations = await vacationService.getLikedVacations();
+        response.json(vacations);
+    };
 
+    public async getActiveVacations(request: Request, response: Response) {
+        const vacations = await vacationService.getActiveVacations();
+        response.json(vacations);
+    };
+
+    public async getFutureVacations(request: Request, response: Response) {
+        const vacations = await vacationService.getFutureVacations();
+        response.json(vacations);
+    };
 
     public async addVacation(request: Request, response: Response) {
         request.body.image = request.files?.image;

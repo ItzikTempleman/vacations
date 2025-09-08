@@ -3,7 +3,7 @@
     box-sizing: border-box;
     display: grid;
       grid-template-rows: 10% 86% 4%;
-    grid-template-columns: 12% 88%;
+   grid-template-columns: minmax(160px, 12%) minmax(0, 1fr);
 }
 
 .MainLayout > * {

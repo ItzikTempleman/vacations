@@ -1,5 +1,9 @@
 class AppConfig {
     public readonly vacationsUrl = "http://localhost:4000/api/vacations/";
+    public readonly getAllVacationsUrl = "http://localhost:4000/api/vacations/sorted/all/";
+    public readonly getLikedVacationsUrl = "http://localhost:4000/api/vacations/sorted/liked/";
+    public readonly getActiveVacationsUrl = "http://localhost:4000/api/vacations/sorted/active/";
+    public readonly getFutureVacationsUrl = "http://localhost:4000/api/vacations/sorted/future/";
     public readonly likeUrl = "http://localhost:4000/api/vacations/liked/";
     public readonly imageBaseUrl = "http://localhost:4000/api/vacations/images/";
 

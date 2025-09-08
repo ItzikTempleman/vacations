@@ -37,9 +37,8 @@ class VacationService {
 
     }
 
-
     public async getAllVacations(): Promise<VacationModel[]> {
-        const response = await axios.get<VacationModel[]>(appConfig.vacationsUrl, this.getAuth());
+        const response = await axios.get<VacationModel[]>(appConfig.getAllVacationsUrl, this.getAuth());
         const vacations = response.data;
         store.dispatch(initVacations(vacations));
         return vacations;
