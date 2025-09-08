@@ -85,6 +85,7 @@ class VacationService {
 
     public async updateVacation(vacation: VacationModel): Promise<void> {
         try {
+            console.log(`vacation; ${vacation.departureDate}`)
             const response = await axios.put<VacationModel>(appConfig.vacationsUrl + vacation.id, vacation, this.getAuthMultipart());
             const updatedVacation = response.data;
             store.dispatch(updateVacation(updatedVacation));

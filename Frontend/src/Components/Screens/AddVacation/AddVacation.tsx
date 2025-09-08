@@ -8,7 +8,7 @@ import { vacationService } from "../../../Services/VacationService";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FlightLandIcon from '@mui/icons-material/FlightLand';
-import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
+import { validateReturnAfterIsDeparture } from "../../../utils/CompareDates";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
@@ -90,7 +90,7 @@ export function AddVacation() {
                         fullWidth
                         {...register("returnDate", {
                             required: "Return date is required",
-                            validate: (val) => validateReturnAfterDeparture(getValues("departureDate"), val)
+                            validate: (val) => validateReturnAfterIsDeparture(getValues("departureDate"), val)
                         })} />
                 </div>
                 <div>
@@ -101,14 +101,13 @@ export function AddVacation() {
                         placeholder="Price $"
                         {...register("price")} />
                 </div>
+
                 <div className="image-upload-container">
                     <h3 className="image-label">Upload image</h3>
                     <input
                         type="file"
                         accept="image/*"
-                        {...register("image", {
-                            required: "Image is required"
-                        })}
+                  {...register("image", { required: false })}
                         className="image-input" />
                 </div>
                 <Button className="add-btn"

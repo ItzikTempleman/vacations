@@ -1,8 +1,8 @@
 .Home {
   position: relative;
-  padding: 16px 32px;
   box-sizing: border-box;
   background: #fff;    
+  height: 100vh;
 }
 
 .Home::before,
@@ -49,6 +49,7 @@
 .Home.logged-in::after {
   background-image: none;
   background-color: white;
+  
 }
 
 .Home.logged-out::before,

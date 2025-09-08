@@ -7,12 +7,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { vacationService } from "../../../Services/VacationService";
 import { notify } from "../../../utils/Notify";
-import { validateReturnAfterDeparture } from "../../../utils/CompareDates";
+import { validateReturnAfterIsDeparture } from "../../../utils/CompareDates";
 
 function formatDate(datetimeLocal: string): string {
-    return datetimeLocal ? datetimeLocal.replace("T", " ").slice(0, 16) : "";
+    return datetimeLocal.replace("T", " ").slice(0, 16);
 }
-
 
 export function EditVacation() {
     useTitle("Edit");
@@ -107,7 +106,7 @@ export function EditVacation() {
                         fullWidth
                         type="datetime-local"
                         {...register("returnDate", {
-                            validate: (val) => validateReturnAfterDeparture(getValues("departureDate"), val)
+                            validate: (val) => validateReturnAfterIsDeparture(getValues("departureDate"), val)
                         })
                         }
                         error={!!errors.returnDate}
@@ -130,9 +129,7 @@ export function EditVacation() {
                     <input
                         type="file"
                         accept="image/*"
-                        {...register("image", {
-                            required: "Image is required"
-                        })}
+                        {...register("image", { required: false })}
                         className="image-input"
                         onChange={onPick}
                     />
