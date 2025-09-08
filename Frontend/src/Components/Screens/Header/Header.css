@@ -124,9 +124,9 @@ font-size: 12px;
   gap: 8px;
   padding: 6px 10px;
   background: transparent;
- color: #00d0ff;
+ color: red;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 24px;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.2s, color 0.2s;
@@ -134,13 +134,13 @@ font-size: 12px;
 
 .login-logout-container:hover,
 .header-logout:hover {
-  color: #00d0ff;
-  transform: scale(1.1);
+  color: red;
+  transform: scale(1.2);
 }
 
 .login-logout-container svg,
 .header-logout svg {
   width: 32px;
   height: 32px;
-  color: #00d0ff;
+  color: red;
 }

@@ -34,20 +34,19 @@ export function Home() {
             }
 
             {!user && (
-                <>
-                    <div className="login-text">
-                        <h2>You must log in to view vacation offerings</h2>
-                    </div>
-                    <div >
-    <p className="home-description">
-  <strong className="home-intro">
-    Welcome to my vacation website, your starting point for discovering unforgettable journeys.
-  </strong>
-  <br className="tight-break" />
-  {homeParagraph.vacationDescription()}
-</p>
-                    </div>
-                </>
+<div className="non-logged-in-home-screen">
+  <div className="home-description">
+    <strong className="home-intro">
+      Welcome to my vacation website, your starting point for discovering unforgettable journeys.
+    </strong>
+    <br className="tight-break" />
+    {homeParagraph.vacationDescription()}
+  </div>
+
+  <div className="login-text">
+    <h2>You must log in to view vacation offerings</h2>
+  </div>
+</div>
             )}
 
             <div className="vacation-list">

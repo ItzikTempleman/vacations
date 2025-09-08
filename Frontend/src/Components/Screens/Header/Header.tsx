@@ -19,8 +19,8 @@ import { vacationService } from "../../../Services/VacationService";
 export function Header() {
 
   const user = useSelector((state: AppState) => state.user);
-  
-  const vacations = useSelector((s: AppState) => s.vacation) as Array<{ id:number; destination:string }>;
+
+  const vacations = useSelector((s: AppState) => s.vacation) as Array<{ id: number; destination: string }>;
   const [likes, setLikes] = useState<Record<number, number>>({});
 
   useEffect(() => {
@@ -42,12 +42,13 @@ export function Header() {
 
       <div className="header-brand">
         <h3>Vacations</h3>
-
-        <NavLink to="/home" className="left-link-home">
-          <HomeOutlinedIcon />
-          <div className="left-link-home-text">Home</div>
-        </NavLink>
-
+        {user && accountProtection.isUser() && (
+          <NavLink to="/home" className="left-link-home">
+            <HomeOutlinedIcon />
+            <div className="left-link-home-text">Home</div>
+          </NavLink>
+        )
+        }
         {isAdmin && (
           <>
             <NavLink to="/add-vacation" className="left-link">
@@ -62,7 +63,7 @@ export function Header() {
               </div>
             </NavLink>
 
-           <NavLink onClick={() => downloadLikesCsv(vacations, likes)} to=" " className="left-link">
+            <NavLink onClick={() => downloadLikesCsv(vacations, likes)} to=" " className="left-link">
               <div className="csv-div" >
                 <ArrowDownwardIcon />
                 <div className="csv-div-text">Download Report</div>
@@ -92,7 +93,7 @@ export function Header() {
               </span>
             </span>
 
-            <NavLink to="/login" className="login-logout-container" onClick={logout}  >
+            <NavLink to="/home" className="login-logout-container" onClick={logout}  >
               <LogoutIcon />
               <p className="logout-label">Logout</p>
             </NavLink>

@@ -19,26 +19,40 @@
   opacity: 1;           
   transition: opacity .3s ease;
 }
+
 .home-description {
   position: relative;  
-  z-index: 1;         
+  z-index: 1;          
+  flex: 1 1 560px;    
+  min-width: 320px;  
+  min-height: 0;       
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 640px;
+  margin: 0;
+  padding: 16px;
+  background: rgba(255, 254, 254, 0.7);
+  border-radius: 8px;
+  color: #000;
   font-size: 20px;
   line-height: 1.8;
-  width: 90%;
-   max-width: 500px; 
-  margin: 20px ;
-  padding: 8px;
- background: rgba(255, 254, 254, 0.7);
-  border-radius: 8px;  
-  color: #000000;
-white-space: pre-line;
-         text-align: left; 
+  white-space: pre-line;
+  text-align: left;
+}
+
+.login-text {
+  flex: 0 0 320px;          
+  align-self: flex-start;  
+  text-align: left;
 }
 
 
 .Home.logged-in::before,
 .Home.logged-in::after {
-  opacity: 0.6;
+  background-image: none;
+  background-color: white;
 }
 
 .Home.logged-out::before,
@@ -60,10 +74,20 @@ white-space: pre-line;
 }
 
 .home-header,
-.vacation-list,
-.login-text {
+.vacation-list{
   position: relative;
   z-index: 1;
+}
+
+.login-text{
+    position: relative;  
+  z-index: 2;
+margin-top: 50px;
+  flex: 0 1 800px;     
+  min-width: 280px;  
+  
+  align-self: flex-start;
+  text-align: left;
 }
 
 .home-header {
@@ -85,8 +109,18 @@ white-space: pre-line;
   width: 100%;
 }
 .login-text > h2 {
-  margin-left: 50px;
-  text-align: left;
+  margin: 0 0 8px 0;       
   font-size: 40px;
   color: #333;
+}
+
+.non-logged-in-home-screen {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;         
+  align-items: flex-start; 
+  gap: 32px;
+  padding: 32px;
+  box-sizing: border-box;
 }

@@ -8,7 +8,7 @@ import { ResourceNotFoundError, ValidationError } from "../3-models/error-models
 class VacationService {
 
     public async getAllVacations(): Promise<VacationModel[]> {
-        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable";
+        const sql = "select vacationstable.*, concat(?,imageName) as imageUrl from vacationstable order by departureDate asc";
         const values = [appConfig.baseImageUrl];
         const vacations = await dal.execute(sql, values) as VacationModel[];
         return vacations;
