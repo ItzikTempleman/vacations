@@ -1,10 +1,14 @@
 .Menu {
-    border-right: 0.5px solid#4d4d4d;
-    height: 100%;
+    padding: 16px;
+    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+     background: #626262c4;
     justify-content: flex-start;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.35);
+    margin: 16px;
 }
 
 .filter-section {
