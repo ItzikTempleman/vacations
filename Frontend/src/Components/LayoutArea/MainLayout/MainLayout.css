@@ -2,7 +2,7 @@
     height: 100vh;   
     box-sizing: border-box;
     display: grid;
-      grid-template-rows: 10% 86% 4%;
+     grid-template-rows: minmax(80px, 10%) 1fr minmax(30px, 4%);
    grid-template-columns: 1fr;
 }
 
@@ -17,13 +17,9 @@ header, footer {
 
 
 
-header {
-    height: 80px;          
+header, footer {
+       
     overflow: hidden;       
-}
-footer{
-        height: 30px;          
-    overflow: hidden;  
 }
 
  main {

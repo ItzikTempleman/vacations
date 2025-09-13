@@ -29,14 +29,14 @@
 			"response": []
 		},
 		{
-			"name": "get vacations",
+			"name": "get all vacations",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MDY0OTU1LCJleHAiOjE3NTcwNzU3NTV9.p-v_DVDf0PfADOwkJn0MV3hWy0k-xa054_bc8faXjKc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NzM2MDk0MywiZXhwIjoxNzU3MzcxNzQzfQ.n-QyB4kLbPsmEwdBJUT-FljVPpg57rbRvNzPemd01wY",
 							"type": "string"
 						}
 					]
@@ -44,7 +44,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/api/vacations",
+					"raw": "http://localhost:4000/api/vacations/sorted/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -52,7 +52,105 @@
 					"port": "4000",
 					"path": [
 						"api",
-						"vacations"
+						"vacations",
+						"sorted",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get liked vacations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MzM4NjU5LCJleHAiOjE3NTczNDk0NTl9.6yZ3sq4FAagXlRC1wDAu8MtMdIuG2EMwduceEUsGtzs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/sorted/liked",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"sorted",
+						"liked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get active vacations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MzM4NjU5LCJleHAiOjE3NTczNDk0NTl9.6yZ3sq4FAagXlRC1wDAu8MtMdIuG2EMwduceEUsGtzs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/sorted/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"sorted",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get future vacations",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOSwiZmlyc3ROYW1lIjoiTmlyIiwiZmFtaWx5TmFtZSI6IkNvaGVuIiwiZW1haWwiOiJuaXJfY29oZW5AZ21haWwuY29tIiwicm9sZUlkIjoyfSwiaWF0IjoxNzU3MzM4NjU5LCJleHAiOjE3NTczNDk0NTl9.6yZ3sq4FAagXlRC1wDAu8MtMdIuG2EMwduceEUsGtzs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/vacations/sorted/future",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"vacations",
+						"sorted",
+						"future"
 					]
 				}
 			},
@@ -124,7 +222,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"nir_cohen@gmail.com\",\n    \"password\":\"Rz64lp321\"\n}",
+					"raw": "{\n    \"email\":\"itzik.templeman@gmail.com\",\n    \"password\":\"Rz64lp321\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,7 +252,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxNiwiZmlyc3ROYW1lIjoiTGlhZCAiLCJmYW1pbHlOYW1lIjoiQ29oZW4iLCJlbWFpbCI6ImxpYWQxMjNkQHdhbGxhLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjIzNDE0MywiZXhwIjoxNzU2MjQ0OTQzfQ.MB-yWYsngqzdAcJgcuH5zV_Mm89Ey3yVJiJua_ModG0",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NzM2MTE0MSwiZXhwIjoxNzU3MzcxOTQxfQ.896doogGQUgQNkeS6W7eSfS7Q0NknlQ3d-s_shACYFM",
 							"type": "string"
 						}
 					]
@@ -166,7 +264,7 @@
 					"formdata": [
 						{
 							"key": "destination",
-							"value": "Dubai, UAE",
+							"value": "Berlin 2",
 							"type": "text"
 						},
 						{
@@ -192,7 +290,7 @@
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/Users/isaaktempleman/Downloads/Full Stock Web - John Bryce (116)/work/vacations/Backend/src/1-assets/images/2024-12-31T141745Z_244978656_RC2E0CAHN0XJ_RTRMADP_3_NEW-YEAR-DUBAI-FIREWORKS-1024x683.jpg"
+							"src": "/Users/isaaktempleman/Downloads/Full Stock Web - John Bryce (116)/Itzik Templeman - Vacations/Backend/src/1-assets/images/e6714fed-24b4-4faf-bea4-f6ad46ceb56c.jpg"
 						}
 					]
 				},
@@ -407,7 +505,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NjQ4MTE5MSwiZXhwIjoxNzU2NDkxOTkxfQ.def5XneJGmLSqgAiYdBQ2ryaQQMFCsTkltwSpJyxqto",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyMCwiZmlyc3ROYW1lIjoiSXR6aWsgIiwiZmFtaWx5TmFtZSI6IlRlbXBsZW1hbiIsImVtYWlsIjoiaXR6aWsudGVtcGxlbWFuQGdtYWlsLmNvbSIsInJvbGVJZCI6MX0sImlhdCI6MTc1NzM2MTE0MSwiZXhwIjoxNzU3MzcxOTQxfQ.896doogGQUgQNkeS6W7eSfS7Q0NknlQ3d-s_shACYFM",
 							"type": "string"
 						}
 					]
@@ -415,7 +513,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/api/vacations/9",
+					"raw": "http://localhost:4000/api/vacations/30",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -424,7 +522,7 @@
 					"path": [
 						"api",
 						"vacations",
-						"9"
+						"30"
 					]
 				}
 			},
