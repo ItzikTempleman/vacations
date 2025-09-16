@@ -51,7 +51,12 @@ export function RegisterUser() {
                 <TextField
                     label="Enter first name"
                     placeholder="first name"
-                    {...register("firstName")}
+                    {...register("firstName", {
+                        required: "First name is required",
+                        minLength: { value: 3, message: "Minimum 3 characters required" }
+                    })}
+                    error={!!errors.firstName}
+                    helperText={errors.firstName?.message}
                     InputProps={
                         {
                             endAdornment: (
@@ -64,7 +69,12 @@ export function RegisterUser() {
                 <TextField
                     label="Enter family name"
                     placeholder="family name"
-                    {...register("familyName")}
+                    {...register("familyName", {
+                        required: "Family name is required",
+                        minLength: { value: 3, message: "Minimum 3 characters required" }
+                    })}
+                    error={!!errors.familyName}
+                    helperText={errors.familyName?.message}
                     InputProps={
                         {
                             endAdornment: (

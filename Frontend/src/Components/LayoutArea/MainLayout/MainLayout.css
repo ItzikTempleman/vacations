@@ -36,7 +36,11 @@ header, footer {
 }
 
 
+.MainLayout main {
+  grid-column: 1 / -1;
+}
+
+
 .MainLayout.with-aside main {
   grid-column: 2 / -1;
 }
-
